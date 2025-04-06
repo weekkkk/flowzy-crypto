@@ -6,4 +6,5 @@
   <HelloWorldFeature />
   <HelloWorld />
   <UiWorld />
+  <NuxtImg src="/images/hello-world.png" />
 </template>
