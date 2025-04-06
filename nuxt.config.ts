@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         path: "~/src/shared",
         extendComponent(component) {
           component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = "Ui" + component.pascalName;
+          component.pascalName = `Ui${component.pascalName}`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
         path: "~/src/entities",
         extendComponent(component) {
           component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = component.pascalName + "Feature";
+          component.pascalName = `${component.pascalName}Feature`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -36,7 +36,7 @@ export default defineNuxtConfig({
         path: "~/src/features",
         extendComponent(component) {
           component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = component.pascalName + "Feature";
+          component.pascalName = `${component.pascalName}Feature`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -46,7 +46,7 @@ export default defineNuxtConfig({
         path: "~/src/widgets",
         extendComponent(component) {
           component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = component.pascalName + "Widget";
+          component.pascalName = `${component.pascalName}Widget`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -55,7 +55,7 @@ export default defineNuxtConfig({
       {
         path: "~/src/pages",
         extendComponent(component) {
-          component.pascalName = component.pascalName + "Page";
+          component.pascalName = `${component.pascalName}Page`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -73,6 +73,13 @@ export default defineNuxtConfig({
     ],
   },
   devtools: { enabled: true },
+  css: ["~/src/app/assets/css/main.css"],
+  colorMode: {
+    preference: "dark",
+  },
+  fonts: {
+    families: [{ name: "neuemontreal", provider: "local", global: true }],
+  },
   dir: {
     pages: "./src/app/routes",
     layouts: "./src/app/layouts",
@@ -83,11 +90,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   eslint: {
     config: {
-      stylistic: {
-        quotes: "double",
-        indent: 2,
-        semi: true,
-      },
+      standalone: false,
     },
   },
 });

@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "neuemontreal", sans-serif;
+}
+
+.dark {
+    --ui-color-primary-400: #9945FF;
+    
+    --ui-color-secondary-400:  #43B4BB;
+    --ui-color-secondary-200:  #2FCDAC;
+
+    --ui-color-info-400:  #6883D7;
+
+    --ui-color-success-400: #58FE3D;
+
+    --ui-color-error-400: #FF3B30;
+    --ui-color-error-500: #D5393B;
+
+    --ui-color-neutral-200: #ffffff;
+    --ui-color-neutral-400: #ebebf5;
+    --ui-color-neutral-500: #999999;
+    --ui-color-neutral-700: #262626;
+    --ui-color-neutral-800: #1B1B1B;
+    --ui-color-neutral-900: #0A0A0A;
+}
