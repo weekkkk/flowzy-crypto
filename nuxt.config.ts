@@ -1,24 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
-  devtools: { enabled: true },
   modules: ["@nuxt/image", "@nuxt/ui", "@nuxt/eslint"],
-  dir: {
-    pages: "./src/app/routes",
-    layouts: "./src/app/layouts",
-    assets: "./src/app/assets",
-    middleware: "./src/app/middlewares",
-    app: "./src/app/app",
-  },
-  imports: {
-    dirs: [
-      "./src/shared/*/index.ts",
-      "./src/entities/*/*/index.ts",
-      "./src/features/*/*/index.ts",
-      "./src/widgets/*/*/index.ts",
-      "./src/pages/*/*/index.ts",
-    ],
-  },
   components: {
     dirs: [
       {
@@ -80,5 +62,32 @@ export default defineNuxtConfig({
         extensions: ["vue"],
       },
     ],
+  },
+  imports: {
+    dirs: [
+      "./src/shared/*/index.ts",
+      "./src/entities/*/*/index.ts",
+      "./src/features/*/*/index.ts",
+      "./src/widgets/*/*/index.ts",
+      "./src/pages/*/*/index.ts",
+    ],
+  },
+  devtools: { enabled: true },
+  dir: {
+    pages: "./src/app/routes",
+    layouts: "./src/app/layouts",
+    assets: "./src/app/assets",
+    middleware: "./src/app/middlewares",
+    app: "./src/app/app",
+  },
+  compatibilityDate: "2024-11-01",
+  eslint: {
+    config: {
+      stylistic: {
+        quotes: "double",
+        indent: 2,
+        semi: true,
+      },
+    },
   },
 });
