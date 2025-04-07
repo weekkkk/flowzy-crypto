@@ -93,4 +93,10 @@ export default defineNuxtConfig({
       standalone: false,
     },
   },
+  app: {
+    head: {
+      title: "Default",
+      titleTemplate: "%s | Flowzy Crypto",
+    },
+  },
 });
