@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "neuemontreal", sans-serif;
+
+  /* 5px */
+  --text-xxs: 0.3125rem;
+  --text-xxs--line-height: 0.3125rem;
+  /* 10px */
+  --text-xs: 0.625rem;
+  --text-xs--line-height: 0.625rem;
+  /* 14px */
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 0.9375rem;
+  /* 16px */
+  --text-base: 1rem;
+  --text-base--line-height: 1.125rem;
+  /* 18px */
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.25rem;
+  /* 20px */
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.375rem;
+  /* 24px */
+  --text-2xl: 1.5rem;
+  --text-xl--line-height: 1.625rem;
+  /* 32px */
+  --text-3xl: 2rem;
+  --text-3xl--line-height: 2.1875rem;
+  /* 36px */
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.6875rem;
+  /* 64px */
+  --text-6xl: 4rem;
+  --text-6xl--line-height: 4.375rem;
+}
+
+:root {
+  @apply text-[calc((16/(1920/100))*1vw)] max-md:text-[calc((16/(375/100))*1vw)];
+}
+
+.dark {
+  --ui-color-primary-400: #9945ff;
+
+  --ui-color-secondary-400: #43b4bb;
+  --ui-color-secondary-200: #2fcdac;
+
+  --ui-color-info-400: #6883d7;
+
+  --ui-color-success-400: #58fe3d;
+
+  --ui-color-error-400: #ff3b30;
+  --ui-color-error-500: #d5393b;
+
+  --ui-color-neutral-200: #ffffff;
+  --ui-color-neutral-400: #ebebf5;
+  --ui-color-neutral-500: #999999;
+  --ui-color-neutral-700: #262626;
+  --ui-color-neutral-800: #1b1b1b;
+  --ui-color-neutral-900: #0a0a0a;
+}
