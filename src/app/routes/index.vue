@@ -5,10 +5,5 @@ useHead({
 </script>
 
 <template>
-  <h1>
-    Index
-
-    Route
-  </h1>
-  <HelloPage />
+  <DashboardDisconnectedPage />
 </template>
