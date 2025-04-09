@@ -7,8 +7,8 @@
       <AuthStartWidget class="mb-37.5" />
       <div class="flex justify-between items-end">
         <div>
-          <DashboardUiInfoPage />
-          <DashboardUiVideoPage class="mt-13.5" />
+          <DashboardPageInfo />
+          <DashboardPageVideo class="mt-13.5" />
         </div>
         <div>
           <StatGeneralWidget />
