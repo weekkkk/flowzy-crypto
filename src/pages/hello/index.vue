@@ -4,6 +4,7 @@
   <h2 class="text-6xl">
     Hello Page!
   </h2>
+  <HelloPageInfo />
   <HelloWorldWidget />
   <HelloWorldFeature />
   <HelloWorld />
