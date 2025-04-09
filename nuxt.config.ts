@@ -6,8 +6,8 @@ export default defineNuxtConfig({
       {
         path: "~/src/shared",
         extendComponent(component) {
-          component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = `Ui${component.pascalName}`;
+          const { pascalName } = component;
+          component.pascalName = `Ui${pascalName.replaceAll("Ui", "")}`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -25,8 +25,8 @@ export default defineNuxtConfig({
       {
         path: "~/src/entities",
         extendComponent(component) {
-          component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = `${component.pascalName}Feature`;
+          const { pascalName } = component;
+          component.pascalName = `${pascalName.replaceAll("Ui", "")}Feature`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -35,8 +35,8 @@ export default defineNuxtConfig({
       {
         path: "~/src/features",
         extendComponent(component) {
-          component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = `${component.pascalName}Feature`;
+          const { pascalName } = component;
+          component.pascalName = `${pascalName.replaceAll("Ui", "")}Feature`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -45,8 +45,8 @@ export default defineNuxtConfig({
       {
         path: "~/src/widgets",
         extendComponent(component) {
-          component.pascalName = component.pascalName.replaceAll("Ui", "");
-          component.pascalName = `${component.pascalName}Widget`;
+          const { pascalName } = component;
+          component.pascalName = `${pascalName.replaceAll("Ui", "")}Widget`;
           return component;
         },
         pattern: "**/*index.vue",
@@ -55,7 +55,11 @@ export default defineNuxtConfig({
       {
         path: "~/src/pages",
         extendComponent(component) {
-          component.pascalName = `${component.pascalName}Page`;
+          const { pascalName } = component;
+          if (pascalName.includes("Ui"))
+            component.pascalName = pascalName.replace("Ui", "Page").replaceAll("Ui", "");
+          else
+            component.pascalName = `${pascalName}Page`;
           return component;
         },
         pattern: "**/*index.vue",
