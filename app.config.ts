@@ -17,5 +17,35 @@ export default defineAppConfig({
         },
       ],
     },
+    tabs: {
+      slots: {
+        root: "gap-0",
+        label: "text-clip whitespace-nowrap",
+      },
+      variants: {
+        size: {
+          md: {
+            trigger: "text-lg py-5 px-7.5",
+          },
+        },
+        variant: {
+          pill: {
+            trigger: "w-37.5",
+            indicator: "rounded-4xl",
+            list: "rounded-4xl",
+          },
+        },
+      },
+      compoundVariants: [
+        {
+          color: "primary",
+          variant: "pill",
+          class: {
+            trigger: "data-[state=active]:text-white font-medium",
+            indicator: "bg-linear-470 primary-gradient",
+          },
+        },
+      ],
+    },
   },
 });
