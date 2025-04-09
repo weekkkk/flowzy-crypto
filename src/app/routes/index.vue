@@ -5,5 +5,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <DashboardPage />
+  <DashboardDisconnectedPage />
 </template>

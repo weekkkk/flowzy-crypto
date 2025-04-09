@@ -40,17 +40,6 @@
   /* 64px */
   --text-6xl: 4rem;
   --text-6xl--line-height: 4.375rem;
-
-  /* rounded - 40px */
-  --radius-5xl: 2.5rem;
-}
-
-body {
-  @apply py-12.5 px-25 max-md:py-4 max-md:px-5;
-}
-
-.primary-gradient {
-  @apply from-secondary-400 to-primary-400;
 }
 
 :root {
