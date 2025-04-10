@@ -1,0 +1,1 @@
+export { StatService } from "./service";

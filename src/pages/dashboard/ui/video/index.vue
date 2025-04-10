@@ -2,7 +2,7 @@
 
 <template>
   <div class="flex justify-center items-center w-87.5 h-53.75 bg-neutral-700 rounded-3xl cursor-pointer">
-    <!-- <NuxtImg src="/icons/play-video.svg" class="w-9.75 h-10.5" /> -->
-    <p>a</p>
+    <!-- <NuxtImg src="/icons/play-video.svg"  /> -->
+    <UIcon name="fci:play-video" class="w-9.75 h-10.5" />
   </div>
 </template>
