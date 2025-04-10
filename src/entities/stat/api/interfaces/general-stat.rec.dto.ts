@@ -1,4 +1,4 @@
 export interface GeneralStatRecordDto {
-  value: number,
-  profit: number
-}
+  value: number;
+  profit: number;
+};
