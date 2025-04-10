@@ -81,6 +81,15 @@ export default defineNuxtConfig({
   colorMode: {
     preference: "dark",
   },
+  icon: {
+    customCollections: [
+      {
+        prefix: "fci",
+        dir: "./src/app/assets/icons",
+      },
+    ],
+
+  },
   fonts: {
     families: [{ name: "neuemontreal", provider: "local", global: true }],
   },
