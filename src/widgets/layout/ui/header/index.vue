@@ -27,6 +27,9 @@ const items = ref([
 // Активный индекс вкладки
 const activeTabIndex = ref("0");
 
+/** Пользователь авторизован */
+const isAuthenticated = ref(false);
+
 /** После рендера компонента */
 onMounted(() => {
   const currentPath = router.currentRoute.value.path;
@@ -51,5 +54,6 @@ function navigateToRoute(index: string | number) {
       Flowzy Crypto
     </div>
     <UTabs v-model="activeTabIndex" :items="items" class="absolute left-112.5" @update:model-value="navigateToRoute" />
+    <WalletInfoFeature v-if="isAuthenticated" class="absolute right-0" />
   </div>
 </template>
