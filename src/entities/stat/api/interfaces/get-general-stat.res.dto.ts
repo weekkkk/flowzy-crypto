@@ -4,4 +4,4 @@ export interface GetGeneralStatResDto {
   totalParticipants: GeneralStatRecordDto;
   totalTransactions: GeneralStatRecordDto;
   solTurnover: GeneralStatRecordDto;
-}
+};
