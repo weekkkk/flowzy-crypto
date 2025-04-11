@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@layer base {
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+  #__nuxt {
+    overflow: hidden;
+  }
+}
+
 @theme static {
   --font-sans: "neuemontreal", sans-serif;
 

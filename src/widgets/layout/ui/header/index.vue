@@ -55,6 +55,7 @@ function navigateToRoute(index: string | number) {
 /** Переключение отображения шторки */
 function toggleDrawer() {
   visibleDrawer.value = !visibleDrawer.value;
+  document.body.classList.toggle("overflow-hidden", visibleDrawer.value);
 }
 </script>
 
@@ -76,10 +77,10 @@ function toggleDrawer() {
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div v-if="visibleDrawer" class=" bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
+      <div v-if="visibleDrawer" class="bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
         <div class="flex flex-col justify-center items-center mt-57.25">
           <UTabs v-model="activeTabIndex" :items="items" orientation="vertical" @update:model-value="navigateToRoute" />
-          <WalletInfoFeature v-if="isAuthenticated" class="mt-42" />
+          <WalletInfoFeature v-if="isAuthenticated" class="mt-42" @logout="visibleDrawer = false" />
         </div>
       </div>
     </Transition>

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import type { WalletInfoEmit } from "./interfaces";
+
+/** События */
+const emit = defineEmits<WalletInfoEmit>();
+
 /** Адрес кошелька */
 const address = ref("");
 /** Баланс кошелька */
@@ -21,6 +26,6 @@ onMounted(async () => {
   <div class="flex items-center gap-2.5 max-md:gap-4">
     <WalletBalance :balance="balance" />
     <WalletAddress :address="address" />
-    <AuthLogoutFeature />
+    <AuthLogoutFeature @logout="emit('logout')" />
   </div>
 </template>
