@@ -1,3 +1,3 @@
 export const $wallet = $fetch.create({
-    baseURL: "/api/wallet"
-})
+  baseURL: "/api/wallet",
+});

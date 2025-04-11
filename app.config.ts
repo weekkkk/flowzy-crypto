@@ -25,14 +25,14 @@ export default defineAppConfig({
       variants: {
         size: {
           md: {
-            trigger: "text-lg py-5 px-7.5",
+            trigger: "text-lg py-5 px-7.5 max-md:p-0",
           },
         },
         variant: {
           pill: {
-            trigger: "w-37.5",
+            trigger: "w-37.5 max-md:flex max-md:justify-center",
             indicator: "rounded-4xl",
-            list: "rounded-4xl",
+            list: "rounded-4xl max-md:bg-transparent max-md:gap-6",
           },
         },
       },
@@ -41,8 +41,8 @@ export default defineAppConfig({
           color: "primary",
           variant: "pill",
           class: {
-            trigger: "data-[state=active]:text-white font-medium",
-            indicator: "bg-linear-470 primary-gradient",
+            trigger: "data-[state=active]:text-white max-md:data-[state=active]:text-transparent font-medium max-md:data-[state=active]:bg-gradient-to-r max-md:data-[state=active]:from-secondary-400 max-md:data-[state=active]:to-primary-400 max-md:data-[state=active]:bg-clip-text max-md:data-[state=active]:w-max max-md:text-3xl",
+            indicator: "bg-linear-470 primary-gradient max-md:bg-transparent max-md:h-0",
           },
         },
       ],

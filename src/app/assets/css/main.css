@@ -42,6 +42,11 @@
 body {
   padding: 3.125rem 6.25rem;
 }
+@media (width < 48rem /* 768px */) {
+  body {
+    padding: 1rem 1.25rem;
+  }
+}
 
 .primary-gradient {
   @apply from-secondary-400 to-primary-400;

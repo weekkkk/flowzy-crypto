@@ -18,7 +18,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex gap-2.5">
+  <div class="flex items-center gap-2.5 max-md:gap-4">
     <WalletBalance :balance="balance" />
     <WalletAddress :address="address" />
     <AuthLogoutFeature />
