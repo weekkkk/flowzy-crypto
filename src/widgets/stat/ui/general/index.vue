@@ -3,5 +3,5 @@ const { data } = await useAsyncData("stat", () => StatService.getGeneralStat(), 
 </script>
 
 <template>
-  <StatCardGeneral :total-participants="data?.totalParticipants" :total-transactions="data?.totalTransactions" :sol-turnover="data?.solTurnover" />
+  <StatCard :total-participants="data?.totalParticipants" :total-transactions="data?.totalTransactions" :sol-turnover="data?.solTurnover" />
 </template>

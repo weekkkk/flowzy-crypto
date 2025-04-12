@@ -1,4 +1,4 @@
-import type { GeneralStatRecordDto } from "../../../../api/interfaces";
+import type { GeneralStatRecordDto } from "../../../api/interfaces";
 
 export interface StatCardProps {
   totalParticipants?: GeneralStatRecordDto;
