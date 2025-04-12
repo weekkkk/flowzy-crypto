@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 import type { RecentStatCardProps } from "./interfaces";
 
-const props = defineProps<RecentStatCardProps>();
+withDefaults(defineProps<RecentStatCardProps>(), {
+  items: () => {
+    return [] as RecentStatRecDto[];
+  },
+});
 
-// const now = Date.now();
+// функция для получения разницы во времени *доработать* (minute/minutes)
 
-const { data } = props;
-
-// const timeDifference = computed(() => data?.data?.date)
+function getMinutes(date: number) {
+  return ((Date.now() - date) / (60 * 1000)).toFixed();
+}
 </script>
 
 <template>
@@ -17,7 +21,7 @@ const { data } = props;
         Recent activity
       </h3>
     </div>
-    <div v-for="(item, index) in data?.data" :key="item.id" class="flex flex-col">
+    <div v-for="(item, index) in items" :key="item?.id" class="flex flex-col">
       <div class="flex justify-between items-center text-2xl font-medium">
         <div class="flex items-center gap-x-5">
           <div class="bg-neutral-700 py-1.25 px-5 rounded-5xl ">
@@ -27,10 +31,10 @@ const { data } = props;
           <span class="text-info-400">+{{ item.profit }} SOL</span>
         </div>
         <div class="text-2xl">
-          <span class="text-neutral-400 opacity-60">{{ item.date }}</span>
+          <span class="text-neutral-400 opacity-60">{{ getMinutes(item.date) }} minute ago</span>
         </div>
       </div>
-      <USeparator v-if="index !== 4" color="crayola" class="opacity-18 mt-7 mb-6.25" />
+      <USeparator v-if="index !== items.length - 1" color="crayola" class="opacity-18 mt-7 mb-6.25" />
     </div>
   </div>
 </template>

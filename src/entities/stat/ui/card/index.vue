@@ -41,40 +41,40 @@ const turnover = computed(() => {
 </script>
 
 <template>
-  <div class="w-115 h-121.75 bg-neutral-800 rounded-5xl px-12.5 pt-12.5 flex flex-col">
-    <div class="pb-5">
-      <h5 class="text-2xl text-neutral-400 opacity-60">
+  <div class="w-115 h-121.75 bg-neutral-800 max-md:bg-transparent rounded-5xl px-12.5 pt-12.5 flex flex-col max-md:w-full max-md:px-0">
+    <div class="pb-5 max-md:pb-3">
+      <h5 class="text-2xl text-neutral-400 opacity-60 max-md:text-base">
         Total participants
       </h5>
-      <p class="text-4xl">
+      <p class="text-4xl max-md:text-xl">
         {{ participants.value }}
       </p>
-      <p class="text-lg bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
+      <p class="text-lg bg-gradient-to-r primary-gradient bg-clip-text text-transparent max-md:text-sm">
         + {{ participants.profit }}
       </p>
     </div>
     <USeparator color="crayola" class="opacity-18" />
-    <div class="pb-5 pt-6.25">
-      <h5 class="text-2xl text-neutral-400 opacity-60">
+    <div class="pb-5 pt-6.25 max-md:pt-3 max-md:pb-3">
+      <h5 class="text-2xl text-neutral-400 opacity-60 max-md:text-base">
         Total transactions
       </h5>
-      <p class="text-4xl">
+      <p class="text-4xl max-md:text-xl">
         {{ transactions.value }}
       </p>
-      <p class="text-lg bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
+      <p class="text-lg bg-gradient-to-r primary-gradient bg-clip-text text-transparent max-md:text-sm">
         + {{ transactions.profit }}
       </p>
     </div>
     <USeparator color="crayola" class="opacity-18" />
-    <div class="pb-5 pt-6.25">
-      <h5 class="text-2xl text-neutral-400 ">
+    <div class="pb-5 pt-6.25 max-md:pt-3 max-md:pb-3">
+      <h5 class="text-2xl text-neutral-400 max-md:text-base">
         <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">SOL </span>
         <span class="opacity-60">turnover</span>
       </h5>
-      <p class="text-4xl">
+      <p class="text-4xl max-md:text-xl">
         {{ turnover.value }}
       </p>
-      <p class="text-lg bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
+      <p class="text-lg bg-gradient-to-r primary-gradient bg-clip-text text-transparent max-md:text-sm">
         + {{ turnover.profit }}
       </p>
     </div>
