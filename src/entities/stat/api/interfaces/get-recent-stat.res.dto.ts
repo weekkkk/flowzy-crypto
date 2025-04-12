@@ -1,4 +1,4 @@
-import type { RecentStatRecDto } from "./recent-stat.rec.dto";
+import type { RecentStatRecDto } from "./recent-stat.record.dto";
 
 export interface GetRecentStatResDto {
   data: RecentStatRecDto[];

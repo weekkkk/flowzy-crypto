@@ -15,5 +15,6 @@
         </div>
       </div>
     </div>
+    <StatRecentWidget class="mt-37.5" />
   </div>
 </template>

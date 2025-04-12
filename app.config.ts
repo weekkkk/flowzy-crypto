@@ -47,5 +47,14 @@ export default defineAppConfig({
         },
       ],
     },
+    separator: {
+      variants: {
+        color: {
+          crayola: {
+            border: "border-(--ui-color-neutral-400)",
+          },
+        },
+      },
+    },
   },
 });
