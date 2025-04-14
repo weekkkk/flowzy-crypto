@@ -40,7 +40,7 @@
 }
 
 body {
-  @apply py-12.5 px-25 max-md:py-4 max-md:px-5
+  @apply py-12.5 px-25 max-md:py-4 max-md:px-5;
 }
 
 .primary-gradient {

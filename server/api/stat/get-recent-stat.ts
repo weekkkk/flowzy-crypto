@@ -1,30 +1,34 @@
 export default defineEventHandler(() => {
+  const date = new Date();
+
+  date.setMinutes(date.getMinutes() - 1);
+
   return {
     data: [
       {
         id: 337,
         profit: 5,
-        date: Date.now(),
+        date: date.getTime(),
       },
       {
         id: 3722,
         profit: 5,
-        date: Date.now(),
+        date: date.getTime(),
       },
       {
         id: 12,
         profit: 5,
-        date: Date.now(),
+        date: date.getTime(),
       },
       {
         id: 21457,
         profit: 5,
-        date: Date.now(),
+        date: date.getTime(),
       },
       {
         id: 987,
         profit: 5,
-        date: Date.now(),
+        date: date.getTime(),
       },
     ],
   };

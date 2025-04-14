@@ -10,7 +10,7 @@ const isMobile = useMediaQuery("(max-width: 768px)");
       About game
     </h2>
     <p class="text-2xl max-md:text-base">
-      <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">The world's first smart contract game</span> with passive income in SOL straight to your wallet.<br>
+      <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">The world's first smart contract game</span> with passive income in SOL <br v-show="!isMobile">straight to your wallet.<br>
       All players are randomly placed on 16 levels with unlimited cycles.
     </p>
     <p class="text-2xl max-md:text-base mt-6 max-md:mt-3">
