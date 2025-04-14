@@ -16,7 +16,7 @@ const activeTabIndex = computed({
   get() {
     const currentPath = router.currentRoute.value.path;
     const index = headerItems.findIndex(item => item.to === currentPath);
-    return index !== -1 ? String(index) : "";
+    return index !== -1 ? String(index) : undefined;
   },
   set(payload: string | number) {
     const index = Number(payload);

@@ -1,3 +1,3 @@
 export interface WalletBalanceProps {
-  balance: number;
+  balance?: number;
 }
