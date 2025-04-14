@@ -1,5 +1,5 @@
 export interface WalletGetInfoResDto {
-  userId?: number;
+  userId: number;
   address: string;
-  balance: string;
+  balance: number;
 }

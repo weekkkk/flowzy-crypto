@@ -1,1 +1,1 @@
-export type { WalletInfoEmit } from "./emits";
+export type { WalletInfoFeatureProps } from "./props";

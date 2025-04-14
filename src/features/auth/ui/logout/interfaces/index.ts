@@ -1,1 +1,1 @@
-export type { AuthLogoutEmit } from "./emits";
+export type { AuthLogoutFeatureEmits } from "./emits";

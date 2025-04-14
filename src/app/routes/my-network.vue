@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "MyNetwork",
+  title: "My Network",
 });
 </script>
 

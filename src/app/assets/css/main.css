@@ -5,9 +5,6 @@
   ::-webkit-scrollbar {
     width: 0;
   }
-  #__nuxt {
-    overflow: hidden;
-  }
 }
 
 @theme static {
@@ -49,12 +46,7 @@
 }
 
 body {
-  padding: 3.125rem 6.25rem;
-}
-@media (width < 48rem /* 768px */) {
-  body {
-    padding: 1rem 1.25rem;
-  }
+  @apply py-12.5 px-25 max-md:py-4 max-md:px-5
 }
 
 .primary-gradient {

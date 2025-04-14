@@ -1,3 +1,3 @@
-export interface AuthLogoutEmit {
+export interface AuthLogoutFeatureEmits {
   logout: [];
 }

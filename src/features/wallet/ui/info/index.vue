@@ -1,31 +1,16 @@
 <script setup lang="ts">
-import type { WalletInfoEmit } from "./interfaces";
+import type { WalletInfoFeatureProps } from "./interfaces";
 
-/** События */
-const emit = defineEmits<WalletInfoEmit>();
-
-/** Адрес кошелька */
-const address = ref("");
-/** Баланс кошелька */
-const balance = ref("");
+/** Параметры */
+const props = defineProps<WalletInfoFeatureProps>();
 
 /** Получить данные кошелька */
-async function getWalletData() {
-  const response = await WalletService.getInfo({ userId: 1 });
-  address.value = response.address;
-  balance.value = response.balance;
-}
-
-/** После рендера компонента */
-onMounted(async () => {
-  await getWalletData();
-});
+const { data } = useAsyncData("get-wallet-info", () => WalletService.getInfo({ userId: props.userId }));
 </script>
 
 <template>
   <div class="flex items-center gap-2.5 max-md:gap-4">
-    <WalletBalance :balance="balance" />
-    <WalletAddress :address="address" />
-    <AuthLogoutFeature @logout="emit('logout')" />
+    <WalletBalance :balance="Number(data?.balance)" />
+    <WalletAddress :address="String(data?.address)" />
   </div>
 </template>
