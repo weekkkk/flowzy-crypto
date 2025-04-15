@@ -1,5 +1,5 @@
-import type { RecentStatRecDto } from "./recent-stat.record.dto";
+import type { StatRecentRecordDto } from "./recent-stat.record.dto";
 
-export interface GetRecentStatResDto {
-  data: RecentStatRecDto[];
+export interface StatGetRecentResDto {
+  records: StatRecentRecordDto[];
 } ;
