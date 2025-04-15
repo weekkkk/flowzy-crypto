@@ -4,7 +4,7 @@ export default defineEventHandler(() => {
   date.setMinutes(date.getMinutes() - 1);
 
   return {
-    data: [
+    records: [
       {
         id: 337,
         profit: 5,

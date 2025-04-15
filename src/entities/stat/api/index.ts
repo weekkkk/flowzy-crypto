@@ -1,2 +1,2 @@
-export type { RecentStatRecDto } from "./interfaces";
+export type { StatRecentRecordDto } from "./interfaces";
 export { StatService } from "./service";

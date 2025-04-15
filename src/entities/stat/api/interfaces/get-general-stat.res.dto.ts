@@ -1,7 +1,7 @@
-import type { GeneralStatRecordDto } from "./general-stat-record.dto";
+import type { StatGeneralRecordDto } from "./general-stat-record.dto";
 
-export interface GetGeneralStatResDto {
-  totalParticipants: GeneralStatRecordDto;
-  totalTransactions: GeneralStatRecordDto;
-  solTurnover: GeneralStatRecordDto;
+export interface StatGetGeneralResDto {
+  totalParticipants: StatGeneralRecordDto;
+  totalTransactions: StatGeneralRecordDto;
+  solTurnover: StatGeneralRecordDto;
 };

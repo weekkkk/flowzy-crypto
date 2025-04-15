@@ -1,15 +1,15 @@
-import type { GetGeneralStatResDto, GetRecentStatResDto } from "./interfaces";
+import type { StatGetGeneralResDto, StatGetRecentResDto } from "./interfaces";
 
 import { $stat } from "./point";
 
 export class StatService {
-  static async getGeneralStat() {
-    const res = await $stat<GetGeneralStatResDto>("/get-general-stat");
+  static async getGeneral() {
+    const res = await $stat<StatGetGeneralResDto>("/get-general-stat");
     return res;
   }
 
-  static async getRecentStat() {
-    const res = await $stat<GetRecentStatResDto>("/get-recent-stat");
+  static async getRecent() {
+    const res = await $stat<StatGetRecentResDto>("/get-recent-stat");
     return res;
   }
 }
