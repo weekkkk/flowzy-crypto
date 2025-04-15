@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({
+useHead({
   title: "Notifications",
 });
 </script>

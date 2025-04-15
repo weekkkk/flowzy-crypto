@@ -1,3 +1,3 @@
 <template>
-  <div>Notifications</div>
+  <NotificationInfoWidget />
 </template>
