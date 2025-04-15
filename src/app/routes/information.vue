@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Dashboard",
+  title: "Information",
 });
 </script>
 
 <template>
-  <DashboardPage />
+  <InformationPage />
 </template>
