@@ -54,7 +54,7 @@ function onLogout() {
   <div class="flex items-center relative max-md:justify-between h-17.5">
     <nav>
       <UButton variant="link" class="cursor-pointer p-0 mt-1.5" @click="emit('redirectToHome')">
-        <UIcon name="fci:logo" class="text-2xl max-md:text-base z-50" />
+        <UIcon name="fci:logo" class="text-2xl max-md:text-base z-50 text-neutral-200" />
       </UButton>
       <UTabs v-model="activeTabIndex" :items="headerItems" class="absolute top-0 left-112.5 max-md:hidden" @update:model-value="navigateToRoute" />
     </nav>
