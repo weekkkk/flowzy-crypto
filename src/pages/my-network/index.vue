@@ -1,3 +1,3 @@
 <template>
-  <div>MyNetwork</div>
+  <GameLevelListWidget />
 </template>
