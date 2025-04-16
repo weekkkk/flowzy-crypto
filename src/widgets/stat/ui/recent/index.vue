@@ -1,5 +1,5 @@
 <script lang="ts" async setup>
-const { data } = await useAsyncData("stat-recent", () => StatService.getRecent(), {});
+const { data } = await useAsyncData("stat-recent", () => StatService.getRecent());
 </script>
 
 <template>

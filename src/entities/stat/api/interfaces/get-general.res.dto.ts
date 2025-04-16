@@ -1,4 +1,4 @@
-import type { StatGeneralRecordDto } from "./general-stat-record.dto";
+import type { StatGeneralRecordDto } from "./general-record.dto";
 
 export interface StatGetGeneralResDto {
   totalParticipants: StatGeneralRecordDto;
