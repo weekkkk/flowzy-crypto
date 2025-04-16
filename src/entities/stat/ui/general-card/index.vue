@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { StatCardProps } from "./interfaces";
-import { formatRecord } from "../../utils";
+import { formatStatGeneralRecord } from "../../utils/format";
 
 const props = withDefaults(defineProps<StatCardProps>(), {
   totalParticipants: () => ({
@@ -20,15 +20,15 @@ const props = withDefaults(defineProps<StatCardProps>(), {
 const { totalParticipants, totalTransactions, solTurnover } = props;
 
 const participants = computed(() => {
-  return formatRecord(totalParticipants);
+  return formatStatGeneralRecord(totalParticipants);
 });
 
 const transactions = computed(() => {
-  return formatRecord(totalTransactions);
+  return formatStatGeneralRecord(totalTransactions);
 });
 
 const turnover = computed(() => {
-  return formatRecord(solTurnover);
+  return formatStatGeneralRecord(solTurnover);
 });
 </script>
 
