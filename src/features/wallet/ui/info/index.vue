@@ -10,7 +10,7 @@ const { data } = useAsyncData("get-wallet-info", () => WalletService.getInfo({ u
 
 <template>
   <div class="flex items-center gap-2.5 max-md:gap-4">
-    <WalletBalance :balance="Number(data?.balance)" />
-    <WalletAddress :address="String(data?.address)" />
+    <WalletBalance :balance="data?.balance" />
+    <WalletAddress :address="data?.address" />
   </div>
 </template>

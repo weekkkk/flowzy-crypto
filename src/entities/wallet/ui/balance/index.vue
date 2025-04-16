@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { WalletBalanceProps } from "./interfaces";
 
-defineProps<WalletBalanceProps>();
+withDefaults(defineProps<WalletBalanceProps>(), {
+  balance: 0,
+});
 </script>
 
 <template>
