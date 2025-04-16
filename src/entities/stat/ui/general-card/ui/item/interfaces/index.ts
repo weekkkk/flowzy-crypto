@@ -1,1 +1,1 @@
-export type { StatCardItemProps } from "./props";
+export type { StatGeneralCardItemProps } from "./props";

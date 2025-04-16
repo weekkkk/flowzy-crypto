@@ -1,5 +1,5 @@
 import type { StatRecentRecordDto } from "../../../api/interfaces";
 
-export interface RecentStatCardProps {
+export interface StatRecentTableProps {
   records?: StatRecentRecordDto[];
 }

@@ -1,1 +1,1 @@
-export { format } from "./stat-record-format";
+export { formatNumber } from "./format-number";

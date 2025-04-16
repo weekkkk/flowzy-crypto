@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { RecentStatCardProps } from "./interfaces";
+import type { StatRecentTableProps } from "./interfaces";
 import dayjs from "./utils";
 
-withDefaults(defineProps<RecentStatCardProps>(), {
+withDefaults(defineProps<StatRecentTableProps>(), {
   records: () => [],
 });
 
