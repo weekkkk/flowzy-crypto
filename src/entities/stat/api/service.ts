@@ -13,5 +13,3 @@ export class StatService {
     return res;
   }
 }
-
-export * from "./interfaces";
