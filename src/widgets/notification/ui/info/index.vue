@@ -19,7 +19,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center h-screen">
+  <div class="flex items-center justify-center">
     <div class="w-226.75">
       <div v-if="data?.isConnectedBot" class="flex flex-col items-center">
         <h1 class="text-6xl max-md:text-3xl mb-12.5 max-md:mb-6 text-center font-medium">
