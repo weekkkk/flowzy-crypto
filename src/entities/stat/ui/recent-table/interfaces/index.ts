@@ -1,1 +1,1 @@
-export type { RecentStatCardProps } from "./props";
+export type { StatRecentTableProps } from "./props";
