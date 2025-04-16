@@ -40,6 +40,16 @@
   @apply text-[calc((16/(1920/100))*1vw)] max-md:text-[calc((16/(375/100))*1vw)];
 }
 
+:root,
+body,
+#__nuxt {
+  @apply h-full;
+}
+
+#__nuxt {
+  @apply flex flex-col;
+}
+
 .dark {
   --ui-color-primary-400: #9945ff;
 
