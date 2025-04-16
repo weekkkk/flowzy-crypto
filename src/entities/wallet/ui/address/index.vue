@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { WalletAddressProps } from "./interfaces";
 
-defineProps<WalletAddressProps>();
+withDefaults(defineProps<WalletAddressProps>(), {
+  address: "...",
+});
 
 /** Функция для сокращения адреса */
 function shortenAddress(address: string): string {

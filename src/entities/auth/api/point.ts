@@ -1,3 +1,5 @@
+const prefix = import.meta.env.PROD ? "/flowzy-crypto" : "/";
+
 export const $auth = $fetch.create({
-  baseURL: "/api/auth",
+  baseURL: `${prefix}api/auth`,
 });
