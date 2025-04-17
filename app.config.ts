@@ -96,5 +96,36 @@ export default defineAppConfig({
         class: "h-5 max-md:h-3",
       }],
     },
+    input: {
+      slots: {
+        base: "placeholder:text-ui-color-neutral-400 rounded-3xl",
+      },
+      variants: {
+        variant: {
+          soft: "bg-(--ui-color-neutral-700)",
+        },
+        size: {
+          md: {
+            base: "text-2xl py-5.5 pl-5.5 pr-0.25",
+            trailing: "pe-0",
+          },
+        },
+      },
+    },
+    select: {
+      slots: {
+        base: "rounded-3xl",
+      },
+      variants: {
+        size: {
+          md: {
+            base: "text-xl px-5",
+          },
+        },
+        variant: {
+          soft: "bg-(--ui-color-neutral-700)",
+        },
+      },
+    },
   },
 });
