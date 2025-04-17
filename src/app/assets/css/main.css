@@ -1,12 +1,6 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-@layer base {
-  ::-webkit-scrollbar {
-    width: 0;
-  }
-}
-
 @theme static {
   --font-sans: "neuemontreal", sans-serif;
 
@@ -45,22 +39,6 @@
   --radius-5xl: 2.5rem;
 }
 
-body {
-  @apply py-12.5 px-25 max-md:py-4 max-md:px-5;
-}
-
-.primary-gradient {
-  @apply from-secondary-400 to-primary-400;
-}
-
-:root {
-  @apply text-[calc((16/(1920/100))*1vw)] max-md:text-[calc((16/(375/100))*1vw)];
-}
-
-::-webkit-scrollbar {
-  width: 0;
-}
-
 .dark {
   --ui-color-primary-400: #9945ff;
 
@@ -80,4 +58,27 @@ body {
   --ui-color-neutral-700: #262626;
   --ui-color-neutral-800: #1b1b1b;
   --ui-color-neutral-900: #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+body {
+  @apply py-12.5 px-25 max-md:py-4 max-md:px-5;
+}
+
+:root {
+  @apply text-[calc((16/(1920/100))*1vw)] max-md:text-[calc((16/(375/100))*1vw)];
+}
+:root,
+body,
+#__nuxt {
+  @apply h-full;
+}
+#__nuxt {
+  @apply flex flex-col;
+}
+
+.primary-gradient {
+  @apply from-secondary-400 to-primary-400;
 }
