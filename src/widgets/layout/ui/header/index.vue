@@ -52,9 +52,9 @@ function onLogout() {
 
 <template>
   <div class="flex items-center relative max-md:justify-between h-17.5">
-    <nav>
+    <nav class="flex md:h-17.5">
       <UButton variant="link" class="cursor-pointer p-0 mt-1.5" @click="emit('redirectToHome')">
-        <UIcon name="fci:logo" class="text-2xl max-md:text-base z-50 text-neutral-200" />
+        <UIcon name="fci:logo" class="text-2xl w-37.5 max-md:w-25 max-md:text-base z-50 text-neutral-200" />
       </UButton>
       <UTabs v-model="activeTabIndex" :items="headerItems" class="absolute top-0 left-112.5 max-md:hidden" @update:model-value="navigateToRoute" />
     </nav>
@@ -62,7 +62,7 @@ function onLogout() {
       <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />
       <AuthLogoutFeature @logout="onLogout" />
     </div>
-    <UButton class="md:hidden flex bg-neutral-800 p-2 rounded-3xl cursor-pointer z-50" color="neutral" @click="toggleDrawer">
+    <UButton class="md:hidden flex bg-neutral-800 p-2 rounded-3xl cursor-pointer z-50 hover:bg-neutral-800" color="neutral" @click="toggleDrawer">
       <UIcon v-show="visibleDrawer" name="fci:cross" class="w-6 h-6 text-neutral-200" />
       <UIcon v-show="!visibleDrawer" name="fci:menu" class="w-6 h-6 text-neutral-200" />
     </UButton>
@@ -75,9 +75,9 @@ function onLogout() {
       leave-to-class="opacity-0"
     >
       <div v-if="visibleDrawer" class="bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
-        <div class="flex flex-col justify-center items-center mt-57.25">
-          <UTabs v-model="activeTabIndex" :items="headerItems" orientation="vertical" @update:model-value="navigateToRoute" />
-          <div class="flex gap-4 mt-42">
+        <div class="flex flex-col justify-center items-center h-full">
+          <UTabs v-model="activeTabIndex" class="mb-26" :items="headerItems" orientation="vertical" @update:model-value="navigateToRoute" />
+          <div class="flex gap-4 absolute bottom-0 mb-25">
             <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />
             <AuthLogoutFeature @logout="onLogout" />
           </div>
