@@ -56,7 +56,7 @@ function onLogout() {
       <UButton variant="link" class="cursor-pointer p-0 mt-1.5" @click="emit('redirectToHome')">
         <UIcon name="fci:logo" class="text-2xl w-37.5 max-md:w-25 max-md:text-base z-50 text-neutral-200" />
       </UButton>
-      <UTabs v-model="activeTabIndex" :items="headerItems" class="absolute top-0 left-112.5 max-md:hidden" @update:model-value="navigateToRoute" />
+      <UTabs v-model="activeTabIndex" :items="headerItems" class="absolute top-0 md:h-full left-112.5 max-md:hidden" @update:model-value="navigateToRoute" />
     </nav>
     <div class="flex gap-2.5 absolute right-0 max-md:hidden">
       <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />

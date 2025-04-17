@@ -32,7 +32,7 @@ export default defineAppConfig({
           pill: {
             trigger: "w-37.5 max-md:flex max-md:justify-center",
             indicator: "rounded-4xl",
-            list: "rounded-4xl max-md:bg-transparent max-md:gap-6",
+            list: "rounded-4xl md:h-full max-md:bg-transparent max-md:gap-6",
           },
         },
       },
