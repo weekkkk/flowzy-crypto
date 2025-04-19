@@ -15,6 +15,10 @@ export default defineAppConfig({
           variant: "solid",
           class: "text-(--ui-text) bg-linear-270 from-(--ui-primary) to-(--ui-secondary)",
         },
+        {
+          color: "neutral",
+          class: "hover:bg-neutral-800",
+        },
       ],
     },
     tabs: {
