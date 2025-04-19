@@ -21,7 +21,7 @@ defineProps<GameLevelEntryProps>();
       Available for<br>activation
     </div>
     <div class="flex justify-center mt-10">
-      <GameLevelModalFeature>
+      <GameLevelModalFeature :id-card="1">
         <template #activate>
           <UButton class="flex text-xl py-5.5 px-18.5 cursor-pointer">
             Activate

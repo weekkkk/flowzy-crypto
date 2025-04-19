@@ -49,14 +49,14 @@ export default defineAppConfig({
     },
     modal: {
       slots: {
-        overlay: "bg-neutral-900  opacity-90",
+        header: "pt-8",
+        overlay: "bg-neutral-900/95",
         content: "bg-neutral-800 rounded-3xl",
-        close: "absolute -top-9.5 -right-9.5 p-4.5 text-2xl text-(--ui-text) bg-linear-270 from-(--ui-primary) to-(--ui-secondary)",
       },
       variants: {
         fullscreen: {
           false: {
-            content: "max-w-167",
+            content: "max-w-167 rounded-3xl p-5.5 shadow-none",
           },
         },
       },
