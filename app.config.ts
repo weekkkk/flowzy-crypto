@@ -114,16 +114,21 @@ export default defineAppConfig({
     },
     select: {
       slots: {
-        base: "rounded-3xl",
+        base: "rounded-3xl data-[state=open]:rounded-b-none transition-all cursor-pointer",
+        group: "py-0 px-0 bg-(--ui-color-neutral-700)",
+        content: "data-[state=open]:rounded-t-none overflow-auto shadow-none data-[state=open]:rounded-b-3xl data-[state=open]:overflow-auto ring-0",
+        item: "border-solid border-(--ui-color-neutral-400)/18 border-t",
       },
       variants: {
         size: {
           md: {
             base: "text-xl px-5",
+            item: "text-xl px-5 py-3.5",
+            trailing: "pe-5",
           },
         },
         variant: {
-          soft: "bg-(--ui-color-neutral-700)",
+          soft: "bg-(--ui-color-neutral-700) ring-transparent",
         },
       },
     },
