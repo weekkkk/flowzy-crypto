@@ -1,6 +1,6 @@
 export default defineEventHandler(() => {
   return {
-    level: 1,
+    level: 14,
     levelAward: 1.212,
     directPartnersReward: 0.22,
     line2PartnersReward: 0.455,

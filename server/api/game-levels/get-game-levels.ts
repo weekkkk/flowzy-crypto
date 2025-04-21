@@ -4,7 +4,7 @@ export default defineEventHandler(() => {
       {
         id: 1,
         level: 1,
-        price: 56,
+        price: 5,
         state: "error",
       },
       {
@@ -12,18 +12,24 @@ export default defineEventHandler(() => {
         level: 2,
         price: 46,
         state: "awaiting",
+        partnerBonus: 0,
+        profitLevel: 0,
       },
       {
         id: 3,
         level: 3,
         price: 46,
         state: "active",
+        partnerBonus: 0,
+        profitLevel: 0.252,
       },
       {
         id: 4,
         level: 4,
         price: 46,
         state: "freeze",
+        partnerBonus: 0,
+        profitLevel: 0,
       },
       {
         id: 5,

@@ -3,4 +3,6 @@ export interface GameLevelShortInfoDto {
   level: number;
   price: number;
   state: string;
+  partnerBonus?: number;
+  profitLevel?: number;
 }

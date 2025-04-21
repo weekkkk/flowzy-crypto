@@ -2,7 +2,7 @@ export default defineAppConfig({
   ui: {
     button: {
       slots: {
-        base: "rounded-full",
+        base: "rounded-full disabled:opacity-100 aria-disabled:opacity-100",
       },
       size: {
         md: {
@@ -13,7 +13,7 @@ export default defineAppConfig({
         {
           color: "primary",
           variant: "solid",
-          class: "text-(--ui-text) bg-linear-270 from-(--ui-primary) to-(--ui-secondary)",
+          class: "text-(--ui-text) bg-linear-270 from-(--ui-primary) to-(--ui-secondary) disabled:bg-neutral-400/60 aria-disabled:bg-neutral-400/60 aria-disabled:bg-none disabled:bg-none",
         },
       ],
     },
@@ -49,14 +49,16 @@ export default defineAppConfig({
     },
     modal: {
       slots: {
-        header: "pt-8",
         overlay: "bg-neutral-900/95",
-        content: "bg-neutral-800 rounded-3xl",
+        content: "bg-neutral-800 rounded-3xl max-h-189",
+        header: "p-0 sm:px-0",
+        body: "p-0 sm:p-0",
+        footer: "p-0 sm:p-0",
       },
       variants: {
         fullscreen: {
           false: {
-            content: "max-w-167 rounded-3xl p-5.5 shadow-none",
+            content: "max-w-167 rounded-3xl p-12.5 shadow-none",
           },
         },
       },

@@ -39,23 +39,25 @@ function closeModal() {
 </script>
 
 <template>
-  <UModal v-model:open="isModalVisible" :ui="{ header: 'border-none', footer: 'border-none' }" class="relative">
+  <UModal
+    v-model:open="isModalVisible" :ui="{ header: 'border-none', footer: 'border-none' }" class="relative"
+  >
     <slot name="activate" />
     <template #header>
       <UButton :ui="{ base: 'p-2.5' }" class="cursor-pointer absolute -top-12.5 -right-11.5" @click="closeModal">
-        <UIcon name="fci:cross" class="text-2xl p-3.5" />
+        <UIcon name="fci:cross" class="w-6 h-6 p-3.5" />
       </UButton>
       <div class="flex justify-between w-full">
         <div class="text-4xl font-medium">
           Activate <br> Network Game
         </div>
-        <div class="text-2xl font-medium mr-4.5 mt-0.5">
+        <div class="text-2xl font-medium mr-0.5 mt-1.5">
           Level {{ data?.level }}
         </div>
       </div>
     </template>
     <template #body>
-      <div class="flex flex-col gap-3.75 text-2xl font-medium">
+      <div class="flex flex-col gap-3.75 text-2xl font-medium mt-22.5 mb-8">
         <div class="flex justify-between">
           <div>
             Level award 74$
@@ -80,7 +82,7 @@ function closeModal() {
             {{ data?.line2PartnersReward }} SOL
           </div>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between mb-6.5">
           <div>
             Line 3 partners 5
           </div>
@@ -88,8 +90,8 @@ function closeModal() {
             {{ data?.line3PartnersReward }} SOL
           </div>
         </div>
-        <div class="bg-neutral-400 h-0.25 opacity-15 mt-10.5" />
-        <div class="flex justify-between mt-7.5">
+        <div class="bg-neutral-400 opacity-20 h-0.25" />
+        <div class="flex justify-between mt-4 mb-4">
           <div class="text-info-400">
             Activate amount
           </div>
@@ -97,7 +99,7 @@ function closeModal() {
             {{ data?.activateAmount }} SOL
           </div>
         </div>
-        <div class="bg-neutral-400 h-0.25 opacity-15 mt-8.25" />
+        <div class="bg-neutral-400 opacity-20 h-0.25 mb-4" />
         <div class="flex justify-between text-success-400">
           <div>Network verification (Smart chain)</div>
           <UIcon name="fci:check" class="w-6 h-6" />
@@ -109,7 +111,7 @@ function closeModal() {
       </div>
     </template>
     <template #footer>
-      <UButton class="flex justify-center py-5 text-2xl w-full cursor-pointer" @click="activateGameLevel">
+      <UButton :ui="{ base: 'rounded-3xl' }" class="flex justify-center py-5 text-2xl w-full cursor-pointer" @click="activateGameLevel">
         Activate
       </UButton>
     </template>
