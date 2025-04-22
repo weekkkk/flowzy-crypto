@@ -5,5 +5,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <AuthConnectionPage />
+  <AuthRegisteredPage />
 </template>

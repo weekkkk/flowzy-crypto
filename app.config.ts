@@ -9,6 +9,11 @@ export default defineAppConfig({
           base: "px-2.5 py-1.5 text-sm gap-1.5",
         },
       },
+      variants: {
+        variant: {
+          ghost: "bg-(--ui-color-neutral-800) hover:bg-(--ui-color-neutral-800) focus:bg-(--ui-color-neutral-800)",
+        },
+      },
       compoundVariants: [
         {
           color: "primary",
@@ -62,7 +67,7 @@ export default defineAppConfig({
       },
       variants: {
         variant: {
-          soft: "bg-(--ui-color-neutral-700)",
+          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700)",
         },
         size: {
           md: {
@@ -88,7 +93,7 @@ export default defineAppConfig({
           },
         },
         variant: {
-          soft: "bg-(--ui-color-neutral-700) ring-transparent",
+          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) ring-transparent",
         },
       },
     },

@@ -1,5 +1,5 @@
 <template>
   <UApp>
-    <AuthConnectionPage />
+    <AuthActivatingPage />
   </UApp>
 </template>
