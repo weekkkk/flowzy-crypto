@@ -2,6 +2,6 @@
 
 <template>
   <div class="flex justify-center items-center h-full">
-    <AuthConnectionWidget />
+    <AuthRegisteredWidget />
   </div>
 </template>

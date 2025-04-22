@@ -46,16 +46,17 @@ const items = [
         <USelect class="w-142.5 h-17.5" variant="soft" size="md" trailing-icon="fci:select-open" :items="items" :content="{ sideOffset: 0 }" :default-value="items.at(0)" />
       </div>
       <div class="flex flex-col gap-3.75 text-2xl text-success-400 mb-11.5">
-        <div>
+        <div class="flex items-center justify-between">
           <p>
             Network verification (Smart chain)
           </p>
           <UIcon name="fci:check" />
         </div>
-        <div>
+        <div class="flex justify-between">
           <p>
             Balance check (At least 5.5 SOL)
           </p>
+          <UIcon name="fci:check" />
         </div>
       </div>
       <UButton label="Activate" class="flex justify-center text-xl h-16.25 rounded-3xl cursor-pointer" />
