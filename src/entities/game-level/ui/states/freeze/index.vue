@@ -31,18 +31,22 @@ const progress = 10;
     <div class="text-center text-2xl md:mt-1.75 max-md:text-sm">
       {{ progress }} %
     </div>
-    <div class="flex justify-between text-sm mt-4 max-md:mt-1 max-md:text-xs">
+    <div class="flex justify-between text-sm mt-4 max-md:mt-1 max-md:text-xs z-20 relative">
       <div>
-        <div class="z-20 relative">
+        <div>
           {{ info.partnerBonus }} SOL
         </div>
-        <div>Partner bonus</div>
+        <div class="opacity-60">
+          Partner bonus
+        </div>
       </div>
       <div class="flex flex-col items-end">
-        <div class="z-20 relative">
+        <div>
           {{ info.profitLevel }} SOL
         </div>
-        <div>Profit level</div>
+        <div class="opacity-60">
+          Profit level
+        </div>
       </div>
     </div>
   </div>
