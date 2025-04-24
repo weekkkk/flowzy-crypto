@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: "Dashboard",
+  title: "Authorization",
 });
 </script>
 
 <template>
-  <DashboardDisconnectedPage />
+  <AuthConnectionPage />
 </template>

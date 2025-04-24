@@ -19,7 +19,9 @@
       <span>telegram bot</span><br>
       <span class="text-neutral-400/60"> to receive immediate notifications about incoming<br>transactions and other info</span>
     </div>
-    <UButton label="Connect notifier bot" class="w-142.5 h-16.25 text-xl flex justify-center mb-5" />
-    <UButton label="Close" variant="ghost" leading-icon="fci:grey-cross" class="w-142.5 h-16.25 text-neutral-400/60 text-2xl flex justify-center cursor-pointer" />
+    <div class="flex flex-col items-center justify-center">
+      <UButton label="Connect notifier bot" class="w-142.5 h-16.25 text-xl flex justify-center mb-5 cursor-pointer rounded-3xl" />
+      <UButton label="Close" variant="ghost" leading-icon="fci:grey-cross" class="w-35 h-16.25 text-neutral-400/60 text-2xl flex justify-center cursor-pointer" />
+    </div>
   </div>
 </template>

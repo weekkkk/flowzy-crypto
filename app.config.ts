@@ -11,7 +11,7 @@ export default defineAppConfig({
       },
       variants: {
         variant: {
-          ghost: "bg-(--ui-color-neutral-800) hover:bg-(--ui-color-neutral-800) focus:bg-(--ui-color-neutral-800)",
+          ghost: "bg-(--ui-color-neutral-800)",
         },
       },
       compoundVariants: [
@@ -24,7 +24,11 @@ export default defineAppConfig({
           color: "neutral",
           class: "hover:bg-neutral-800 hover:text-neutral-200",
         },
-
+        {
+          color: "primary",
+          variant: "ghost",
+          class: "hover:bg-(--ui-color-neutral-800) focus:bg-(--ui-color-neutral-800)",
+        },
       ],
     },
     tabs: {
