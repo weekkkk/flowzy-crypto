@@ -1,25 +1,31 @@
 <script lang="ts" setup>
-const items = [
-  "Level 16 (8 SOL)",
-  "Level 3 (0.1 SOL)",
-  "Level 4 (0.08 SOL)",
-  "Level 5 (0.14 SOL)",
-  "Level 6 (0.2 SOL)",
-  "Level 7 (0.28 SOL)",
-  "Level 8 (0.4 SOL)",
-  "Level 8 (0.4 SOL)",
-  "Level 7 (0.4 SOL)",
-  "Level 6 (0.4 SOL)",
-  "Level 5 (0.4 SOL)",
-  "Level 4 (0.4 SOL)",
-  "Level 3 (0.4 SOL)",
-  "Level 2 (0.4 SOL)",
-  "Level 1 (0.4 SOL)",
-];
+import { levels } from "./consts";
+
+// const state = reactive({
+//   address: undefined,
+//   level: undefined,
+// });
+
+// function onSumbit() {
+//   return "submit";
+// };
 </script>
 
 <template>
   <div class="flex justify-center">
+    <!-- <UForm :state="state" class="space-y-4" @submit="onSubmit">
+      <UFormField label="Email" name="email">
+        <UInput v-model="state.email" />
+      </UFormField>
+
+      <UFormField label="Password" name="password">
+        <UInput v-model="state.password" type="password" />
+      </UFormField>
+
+      <UButton type="submit">
+        Submit
+      </UButton>
+    </UForm> -->
     <div class="flex flex-col bg-neutral-800 p-13 rounded-3xl">
       <div class="flex flex-col gap-y-3.75 mb-12.5">
         <h2 class="text-4xl">
@@ -43,7 +49,7 @@ const items = [
         <p class="text-2xl mb-6">
           Choose game level
         </p>
-        <USelect class="w-142.5 h-17.5" variant="soft" size="md" trailing-icon="fci:select-open" :items="items" :content="{ sideOffset: 0 }" :default-value="items.at(0)" />
+        <USelect class="w-142.5 h-17.5" variant="soft" size="md" trailing-icon="fci:select-open" :items="levels" :content="{ sideOffset: 0 }" :default-value="levels.at(0)" />
       </div>
       <div class="flex flex-col gap-3.75 text-2xl text-success-400 mb-11.5">
         <div class="flex items-center justify-between">
