@@ -22,6 +22,7 @@ export default defineEventHandler(() => {
         state: "active",
         partnerBonus: 0,
         profitLevel: 0.252,
+        userEarnings: [0.25],
       },
       {
         id: 4,
@@ -35,7 +36,7 @@ export default defineEventHandler(() => {
         id: 5,
         level: 5,
         price: 46,
-        state: "unavailable",
+        state: "default",
       },
       {
         id: 6,
@@ -52,14 +53,14 @@ export default defineEventHandler(() => {
       {
         id: 8,
         level: 8,
-        price: 60,
+        price: 5,
         state: "default",
       },
       {
         id: 9,
         level: 9,
-        price: 65,
-        state: "default",
+        price: 5,
+        state: "unavailable",
       },
       {
         id: 10,
