@@ -2,7 +2,7 @@
 const referalRef = ref();
 
 function copyLink() {
-  navigator.clipboard.writeText(referalRef.value.link);
+  navigator.clipboard.writeText(referalRef.value.link.text);
 }
 </script>
 

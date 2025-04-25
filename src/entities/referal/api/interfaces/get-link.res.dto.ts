@@ -1,3 +1,3 @@
 export interface ReferalGetLinkResDto {
-  value: string;
+  text: string;
 }
