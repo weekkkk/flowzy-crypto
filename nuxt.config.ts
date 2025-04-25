@@ -98,7 +98,6 @@ export default defineNuxtConfig({
     layouts: "./src/app/layouts",
     assets: "./src/app/assets",
     middleware: "./src/app/middlewares",
-    app: "./src/app/app",
   },
   compatibilityDate: "2024-11-01",
   eslint: {
