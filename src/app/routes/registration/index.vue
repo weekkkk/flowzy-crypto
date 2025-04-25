@@ -2,6 +2,9 @@
 useSeoMeta({
   title: "Authorization",
 });
+definePageMeta({
+  layout: false,
+});
 </script>
 
 <template>

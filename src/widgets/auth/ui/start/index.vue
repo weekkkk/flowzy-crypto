@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const router = useRouter();
 function navigateToLogin() {
-  router.push("/login");
+  router.push("/registration");
 }
 </script>
 

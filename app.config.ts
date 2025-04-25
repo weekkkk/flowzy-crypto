@@ -68,7 +68,7 @@ export default defineAppConfig({
     },
     input: {
       slots: {
-        base: "placeholder:text-ui-color-neutral-400 rounded-3xl",
+        base: "placeholder:text-ui-color-neutral-400 rounded-3xl max-md:rounded-2xl",
       },
       variants: {
         variant: {
@@ -76,29 +76,30 @@ export default defineAppConfig({
         },
         size: {
           md: {
-            base: "text-2xl py-5.5 pl-5.5 pr-0.25",
-            trailing: "pe-0",
+            base: "text-2xl py-5.5 pl-5.5 pr-0.25 max-md:text-base max-md:p-4.75",
+            trailing: "pe-0 max-md:pe-1",
           },
         },
       },
     },
     select: {
       slots: {
-        base: "rounded-3xl data-[state=open]:rounded-b-none transition-all cursor-pointer",
+        base: "rounded-3xl data-[state=open]:rounded-b-none transition-all cursor-pointer max-md:rounded-2xl",
         group: "py-0 px-0 bg-(--ui-color-neutral-700)",
         content: "data-[state=open]:rounded-t-none overflow-auto shadow-none data-[state=open]:rounded-b-3xl data-[state=open]:overflow-auto ring-0",
         item: "border-solid border-(--ui-color-neutral-400)/18 border-t",
+        trailingIcon: "max-md:w-3 max-md:h-3",
       },
       variants: {
         size: {
           md: {
-            base: "text-xl px-5",
-            item: "text-xl px-5 py-3.5",
-            trailing: "pe-5",
+            base: "text-xl px-5 max-md:text-base max-md:px-4 max-md:py-0",
+            item: "text-xl px-5 py-3.5 max-md:text-base max-md:px-4",
+            trailing: "pe-5 max-md:pe-4",
           },
         },
         variant: {
-          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) ring-transparent",
+          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700) ring-transparent",
         },
       },
     },
