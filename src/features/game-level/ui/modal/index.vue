@@ -40,7 +40,7 @@ function closeModal() {
 
 <template>
   <UModal
-    v-model:open="isModalVisible" :ui="{ header: 'border-none', footer: 'border-none' }" class="relative"
+    v-model:open="isModalVisible" title="Activate Network Game" description="Activate Network Game" :ui="{ header: 'border-none', footer: 'border-none' }" class="relative"
   >
     <slot name="activate" />
     <template #header>
