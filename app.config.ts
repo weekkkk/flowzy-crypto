@@ -96,5 +96,24 @@ export default defineAppConfig({
         class: "h-5 max-md:h-3",
       }],
     },
+    badge: {
+      slots: {
+        base: "rounded-2xl",
+      },
+      compoundVariants: [
+        {
+          color: "primary",
+          class: "bg-info-400",
+        },
+        {
+          color: "secondary",
+          class: "bg-secondary-200",
+        },
+        {
+          color: "neutral",
+          class: "bg-neutral-700",
+        },
+      ],
+    },
   },
 });
