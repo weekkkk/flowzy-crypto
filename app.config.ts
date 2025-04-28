@@ -11,7 +11,7 @@ export default defineAppConfig({
       },
       variants: {
         variant: {
-          ghost: "bg-(--ui-color-neutral-800)",
+          ghost: "bg-transparent",
         },
       },
       compoundVariants: [
@@ -27,7 +27,7 @@ export default defineAppConfig({
         {
           color: "primary",
           variant: "ghost",
-          class: "hover:bg-(--ui-color-neutral-800) focus:bg-(--ui-color-neutral-800)",
+          class: "hover:bg-transparent focus:bg-transparent",
         },
       ],
     },
