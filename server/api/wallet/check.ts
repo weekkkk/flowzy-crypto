@@ -1,5 +1,5 @@
 export default defineEventHandler(() => {
   return {
-    isApproved: true,
+    isApproved: false,
   };
 });

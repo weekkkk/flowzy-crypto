@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+import type { FormSubmitEvent } from "@nuxt/ui";
 import * as z from "zod";
-// import type { FormSubmitEvent } from '@nuxt/ui';
 import { levels } from "./consts";
+
+const router = useRouter();
 
 const schema = z.object({
   address: z.string().nonempty("This field is required"),
@@ -15,9 +17,15 @@ const state = reactive<Required<Schema>>({
   level: levels[0],
 });
 
-function onSubmit() {
-  console.warn(`address: ${state.address}`);
-  console.warn(`level: ${state.level}`);
+async function check() {
+  const { data: isApproved } = await useAsyncData("wallet-check", () => WalletService.check({ address: state.address }));
+  if (isApproved) {
+    router.push("/registration/activating");
+  }
+}
+
+function onSubmit(event: FormSubmitEvent<Schema>) {
+  console.warn(event);
 }
 </script>
 
@@ -34,20 +42,20 @@ function onSubmit() {
         </p>
       </div>
       <div class="flex flex-col mb-12.5">
-        <p class="text-2xl mb-2.5 max-md:text-base">
+        <p class="text-2xl mb-1 max-md:text-base">
           Your upline address and ID
         </p>
         <p class="text-neutral-400/60 text-lg mb-6 max-md:text-sm">
           0xF9e57f124C85E451CFAFceb118729023CdcddDCf
         </p>
         <UFormField name="address">
-          <WalletApproveFeature v-model="state.address" />
+          <WalletApproveFeature v-model="state.address" @check="check" />
         </UFormField>
       </div>
       <UFormField label="Choose game level" name="level" class="text-2xl mb-7.25 max-md:text-base">
-        <USelect v-model="state.level" class="w-142.5 h-17.5 mt-6 max-md:w-full max-md:mt-10.5 max-md:h-14" variant="soft" size="md" trailing-icon="fci:select-open" :items="levels" :content="{ sideOffset: 0 }" />
+        <USelect v-model="state.level" class="w-142.5 h-17.5 mt-6 max-md:w-83.75 max-md:mt-10.5 max-md:h-14" variant="soft" size="md" trailing-icon="fci:select-open" :items="levels" :content="{ sideOffset: 0 }" />
       </UFormField>
-      <div class="flex flex-col gap-3.75 text-2xl text-success-400 mb-11.5 max-md:text-base">
+      <div class="flex flex-col gap-3.75 text-2xl text-success-400 mb-11.5 max-md:text-base max-md:mb-31">
         <div class="flex items-center justify-between">
           <p>
             Network verification (Smart chain)
