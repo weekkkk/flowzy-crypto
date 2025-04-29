@@ -9,19 +9,14 @@ const isModalVisible = ref(false);
 
 /** Получить информацию игрового уровня */
 const { data, refresh } = useAsyncData(
-  "game-level-info",
-  () => GameLevelService.getInfo({ id: props.idCard }),
+  `game-level-info-${props.idLevel}`,
+  () => GameLevelService.getInfo({ id: props.idLevel }),
   { immediate: false },
 );
-/** Метод активирования игрового уровня */
-const { refresh: refreshActivateGameLevel } = useAsyncData(
-  "activate-game-level",
-  () => GameLevelService.activateGameLevel({ id: props.idCard }),
-  { immediate: false },
-);
+
 /** Активировать игровой уровень */
 async function activateGameLevel() {
-  await refreshActivateGameLevel();
+  await GameLevelService.activateGameLevel({ id: props.idLevel });
   isModalVisible.value = false;
 }
 

@@ -14,6 +14,7 @@ export default defineEventHandler(() => {
         state: "awaiting",
         partnerBonus: 0,
         profitLevel: 0,
+        progress: 10,
       },
       {
         id: 3,
@@ -23,6 +24,7 @@ export default defineEventHandler(() => {
         partnerBonus: 0,
         profitLevel: 0.252,
         userEarnings: [0.25],
+        progress: 50,
       },
       {
         id: 4,
@@ -31,6 +33,7 @@ export default defineEventHandler(() => {
         state: "freeze",
         partnerBonus: 0,
         profitLevel: 0,
+        progress: 10,
       },
       {
         id: 5,

@@ -6,4 +6,5 @@ export interface GameLevelShortInfoDto {
   partnerBonus: number;
   profitLevel: number;
   userEarnings: number[];
+  progress: number;
 }

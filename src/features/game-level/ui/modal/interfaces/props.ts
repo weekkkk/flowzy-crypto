@@ -1,3 +1,3 @@
 export interface GameLevelModalProps {
-  idCard: number;
+  idLevel: number;
 }
