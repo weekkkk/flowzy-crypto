@@ -97,21 +97,18 @@ export default defineAppConfig({
       }],
     },
     badge: {
-      slots: {
-        base: "rounded-2xl",
-      },
       compoundVariants: [
         {
           color: "primary",
-          class: "bg-info-400",
+          class: "bg-info-400 rounded-2xl",
         },
         {
           color: "secondary",
-          class: "bg-secondary-200",
+          class: "bg-secondary-200 rounded-2xl",
         },
         {
           color: "neutral",
-          class: "bg-neutral-700",
+          class: "bg-neutral-700 rounded-2xl",
         },
       ],
     },
