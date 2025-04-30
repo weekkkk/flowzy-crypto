@@ -1,28 +1,32 @@
 <template>
   <div class="flex items-start justify-between">
-    <div class="grid grid-cols-2 gap-6.25">
-      <div class="flex items-center gap-3.75">
-        <UBadge class="w-17.5 h-17.5" />
-        <div class="text-2xl">
-          New player position
+    <div class="grid grid-cols-2">
+      <div class="mr-16.75">
+        <div class="flex items-center gap-4.75 mb-6.25">
+          <UBadge class="w-17.5 h-17.5" />
+          <div class="text-2xl">
+            New player position
+          </div>
+        </div>
+        <div class="flex items-center gap-4.75">
+          <UBadge color="secondary" class="w-17.5 h-17.5" />
+          <div class="text-2xl">
+            The place where the player <br>moves to after recycling
+          </div>
         </div>
       </div>
-      <div class="flex items-center gap-3.75">
-        <UBadge color="secondary" class="w-17.5 h-17.5" />
-        <div class="text-2xl">
-          The place where the player<br>moves to after recycling
+      <div>
+        <div class="flex items-center gap-4.75  mb-6.25">
+          <UBadge color="neutral" class="w-17.5 h-17.5" />
+          <div class="text-2xl">
+            The place where the player<br>was before the recycle
+          </div>
         </div>
-      </div>
-      <div class="flex items-center gap-3.75">
-        <UBadge color="neutral" class="w-17.5 h-17.5" />
-        <div class="text-2xl">
-          The place where the player<br>was before the recycle
-        </div>
-      </div>
-      <div class="flex items-center gap-3.75 ">
-        <UIcon name="fci:gradient-border-square" class="w-17.5 h-17.5" />
-        <div class="text-2xl">
-          Available space
+        <div class="flex items-center gap-4.75 ">
+          <UIcon name="fci:gradient-border-square" class="w-17.5 h-17.5" />
+          <div class="text-2xl">
+            Available space
+          </div>
         </div>
       </div>
     </div>
@@ -55,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div class="flex items-center mt-39">
+  <div class="flex items-center mt-38">
     <div class="text-2xl">
       <div>
         <span class="font-medium">ALL NEW PLAYERS</span>are randomly placed in the single big structure on each
@@ -72,6 +76,6 @@
         <span class="text-primary-400">REFERRAL BONUS</span>- 26% from partners down to 3rd generation whenever<br>they earn the basic reward on the level.
       </div>
     </div>
-    <NuxtImg src="/images/chart-1.png" class="w-59 h-58 ml-30" />
+    <NuxtImg src="/images/chart-1.png" class="w-59 h-58 ml-39" />
   </div>
 </template>

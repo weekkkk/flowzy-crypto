@@ -4,7 +4,7 @@
       Information
     </div>
     <div>
-      <div class="flex items-center gap-3.75 justify-center mb-10.5">
+      <div class="flex items-center gap-3.75 justify-center mt-8 mb-10.5 ml-24">
         <UIcon name="fci:arrow-left" class="w-6 h-6" />
         <div class="text-4xl">
           LEVEL 16
