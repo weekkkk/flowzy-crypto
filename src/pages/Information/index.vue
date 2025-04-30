@@ -5,6 +5,6 @@
       <InfoDescriptionWidget />
     </div>
     <InfoAwardsWidget class="mt-35.75" />
-    <InfoLevelFreezingWidget class="mt-37.5" />
+    <InfoLevelFreezingWidget class="mt-34.5" />
   </div>
 </template>
