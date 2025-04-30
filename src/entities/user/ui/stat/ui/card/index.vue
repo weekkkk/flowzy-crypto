@@ -29,11 +29,11 @@ const partnersStr = computed(() => {
     <UserStatCardItem :value="incomeStr" :sol="true">
       Income
     </UserStatCardItem>
-    <USeparator color="crayola" class="opacity-18" />
+    <USeparator color="crayola" class="opacity-18 py-5 max-md:py-3" />
     <UserStatCardItem :value="partnershipIncomeStr" :sol="true">
       Partnership income
     </UserStatCardItem>
-    <USeparator color="crayola" class="opacity-18" />
+    <USeparator color="crayola" class="opacity-18 py-5 max-md:pt-3.5 max-md:pb-3" />
     <UserStatCardItem :value="partnersStr" :sol="false">
       Partners
     </UserStatCardItem>
