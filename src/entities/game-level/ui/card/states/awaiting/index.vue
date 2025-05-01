@@ -14,7 +14,7 @@ defineProps<GameLevelCardAwaitingProps>();
       <div class="text-neutral-400 opacity-60">
         level {{ info.level }}
       </div>
-      <div class="flex items-center gap-2.5 max-md:gap-2">
+      <div class="flex items-center gap-2.5 max-md:gap-2 opacity-50">
         <UIcon name="fci:solana" class="w-6 h-6 max-md:w-3 max-md:h-3" />
         {{ info.price }}
       </div>
@@ -23,26 +23,26 @@ defineProps<GameLevelCardAwaitingProps>();
       Awaiting the next line<span class="max-md:hidden">...</span>
     </div>
     <UProgress v-model="info.progress" color="neutral" class="z-30 relative" />
-    <div class="text-center text-lg z-30 relative mt-2.5 max-md:text-sm">
+    <div class="text-center text-lg z-30 relative mt-2.5 opacity-50 max-md:text-sm">
       Filling the current line
     </div>
-    <div class="text-center text-2xl md:mt-1.75 max-md:text-sm z-30 relative">
+    <div class="text-center text-2xl md:mt-1.75 opacity-50 max-md:text-sm z-30 relative">
       {{ info.progress }} %
     </div>
     <div class="flex justify-between text-sm mt-4 max-md:mt-1 max-md:text-xs z-30 relative">
-      <div>
+      <div class="opacity-50">
         <div>
           {{ info.partnerBonus }} SOL
         </div>
-        <div class="opacity-60">
+        <div>
           Partner bonus
         </div>
       </div>
-      <div class="flex flex-col items-end">
+      <div class="flex flex-col items-end opacity-50">
         <div>
           {{ info.profitLevel }} SOL
         </div>
-        <div class="opacity-60">
+        <div>
           Profit level
         </div>
       </div>
