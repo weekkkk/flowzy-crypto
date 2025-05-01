@@ -6,7 +6,7 @@ const props = defineProps<UserStatCardItemProps>();
 
 <template>
   <li class="list-none">
-    <h5 class="text-2xl text-neutral-400 opacity-60 max-md:text-base max-md:mb-1">
+    <h5 class="text-2xl  text-neutral-400 opacity-60 max-md:text-base mb-1.25 max-md:mb-1">
       <slot />
     </h5>
     <div class="flex items-center gap-x-1.25">

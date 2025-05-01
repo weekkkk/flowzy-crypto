@@ -4,7 +4,7 @@
 <template>
   <div class="w-full flex flex-col items-center mt-37.5 max-md:mt-8">
     <div class="w-full">
-      <DashboardOverviewWidget class="mb-37.5 max-md:mb-11.5" />
+      <DashboardOverviewWidget class="mb-37.5 max-md:mb-9.5" />
       <div class="grid grid-cols-[2fr_1fr] grid-rows-2 max-md:grid-cols-none max-md:grid-rows-[auto_auto_auto]">
         <DashboardPageInfo class="col-span-1 max-md:row-start-1" />
         <DashboardPageVideo class="mt-13.5 col-start-1 max-md:row-start-3 max-md:mt-12" />

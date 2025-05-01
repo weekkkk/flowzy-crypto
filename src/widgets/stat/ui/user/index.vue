@@ -3,7 +3,7 @@ const { data } = await useAsyncData("user-stat", () => UserService.getStat({ use
 </script>
 
 <template>
-  <div class="w-115 h-94.25 max-md:w-87 bg-neutral-800 max-md:bg-transparent rounded-5xl px-12.5 pt-12.5 flex flex-col max-md:px-0 max-md:h-auto max-md:pt-0 max-md:mt-0">
+  <div class="w-115 h-94.25 bg-neutral-800 max-md:bg-transparent rounded-5xl px-12.5 pt-12.5 md:flex md:flex-col max-md:px-0 max-md:pt-0 max-md:mt-0">
     <UserStatCard :records="data" />
   </div>
 </template>
