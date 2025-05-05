@@ -11,9 +11,7 @@ async function logout() {
 </script>
 
 <template>
-  <UButton variant="link" class="bg-neutral-800 rounded-5xl max-md:rounded-4xl text-neutral-200 cursor-pointer hover:text-neutral-200" @click="logout">
-    <div class="p-2 max-md:py-3 max-md:px-3 flex items-center justify-center">
-      <UIcon name="fci:logout" class="w-8 h-8 max-md:w-6 max-md:h-6" />
-    </div>
+  <UButton color="neutral" class="bg-neutral-800 p-5 max-md:p-3 h-max rounded-5xl max-md:rounded-4xl text-neutral-200 cursor-pointer" @click="logout">
+    <UIcon name="fci:logout" class="w-8 h-8 max-md:w-6 max-md:h-6" />
   </UButton>
 </template>

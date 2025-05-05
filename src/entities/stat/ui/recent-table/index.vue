@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import type { StatRecentTableProps } from "./interfaces";
+import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "./utils";
 
 withDefaults(defineProps<StatRecentTableProps>(), {
   records: () => [],
 });
+
+dayjs.extend(relativeTime);
 
 function getPassedTime(date: number) {
   return dayjs(date).fromNow();
