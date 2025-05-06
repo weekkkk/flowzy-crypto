@@ -92,40 +92,41 @@ export default defineAppConfig({
           },
         },
       },
-    progress: {
-      slots: {
-        base: "rounded",
-        indicator: "rounded",
-      },
-      variants: {
-        color: {
-          neutral: {
-            indicator: "neutral-500 opacity-50",
+      progress: {
+        slots: {
+          base: "rounded",
+          indicator: "rounded",
+        },
+        variants: {
+          color: {
+            neutral: {
+              indicator: "neutral-500 opacity-50",
+            },
+            primary: {
+              indicator: "bg-[linear-gradient(90deg,_var(--ui-primary)_0%,_var(--ui-primary)_50%,_var(--ui-secondary)_100%)]",
+            },
           },
-          primary: {
-            indicator: "bg-[linear-gradient(90deg,_var(--ui-primary)_0%,_var(--ui-primary)_50%,_var(--ui-secondary)_100%)]",
-          },
         },
+        compoundVariants: [{
+          class: "h-5 max-md:h-3",
+        }],
       },
-      compoundVariants: [{
-        class: "h-5 max-md:h-3",
-      }],
-    },
-    badge: {
-      compoundVariants: [
-        {
-          color: "primary",
-          class: "bg-info-400 rounded-2xl max-md:rounded-[0.5rem]",
-        },
-        {
-          color: "secondary",
-          class: "bg-secondary-200 rounded-2xl max-md:rounded-[0.5rem]",
-        },
-        {
-          color: "neutral",
-          class: "bg-neutral-700 rounded-2xl max-md:rounded-[0.5rem]",
-        },
-      ],
+      badge: {
+        compoundVariants: [
+          {
+            color: "primary",
+            class: "bg-info-400 rounded-2xl max-md:rounded-[0.5rem]",
+          },
+          {
+            color: "secondary",
+            class: "bg-secondary-200 rounded-2xl max-md:rounded-[0.5rem]",
+          },
+          {
+            color: "neutral",
+            class: "bg-neutral-700 rounded-2xl max-md:rounded-[0.5rem]",
+          },
+        ],
+      },
     },
   },
 });
