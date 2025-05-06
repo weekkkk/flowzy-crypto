@@ -14,11 +14,6 @@ export default defineAppConfig({
           ghost: "bg-transparent",
         },
       },
-      variants: {
-        variant: {
-          ghost: "bg-transparent",
-        },
-      },
       compoundVariants: [
         {
           color: "primary",
