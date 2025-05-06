@@ -77,6 +77,21 @@ export default defineAppConfig({
         },
       },
     },
+    input: {
+      slots: {
+        base: "placeholder:text-ui-color-neutral-400 rounded-3xl max-md:rounded-2xl text-ellipsis disabled:opacity-100",
+      },
+      variants: {
+        variant: {
+          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700)",
+        },
+        size: {
+          md: {
+            base: "text-2xl max-md:text-base py-5.5 pl-5.5 max-md:p-4 max-md:pr-5 pr-0.25 bg-neutral-800",
+            trailing: "pe-0",
+          },
+        },
+      },
     progress: {
       slots: {
         base: "rounded",
