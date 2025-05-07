@@ -127,7 +127,7 @@ export default defineAppConfig({
         group: "py-0 px-0 bg-(--ui-color-neutral-700)",
         content: "data-[state=open]:rounded-t-none overflow-auto shadow-none data-[state=open]:rounded-b-3xl data-[state=open]:overflow-auto ring-0",
         item: "border-solid border-(--ui-color-neutral-400)/18 border-t",
-        trailingIcon: "max-md:w-3 max-md:h-3",
+        trailingIcon: "max-md:w-3 max-md:h-3 text-white",
       },
       variants: {
         size: {

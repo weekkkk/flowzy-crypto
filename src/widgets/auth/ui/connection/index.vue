@@ -1,7 +1,32 @@
 <script lang="ts" setup>
 import type { FormSubmitEvent } from "@nuxt/ui";
 import * as z from "zod";
-import { levels } from "./consts";
+import { GameLevelCardStates } from "~/src/entities/game-level/ui/card/enums";
+
+const { data: info } = await useAsyncData(
+  "game-levels",
+  () => GameLevelService.getGameLevels(),
+  {
+    default: () => ({
+      info: [
+        {
+          id: 1,
+          level: 1,
+          price: 55,
+          state: GameLevelCardStates.Default,
+          partnerBonus: 0,
+          profitLevel: 0,
+          userEarnings: [],
+          progress: 0,
+        },
+      ],
+    }),
+  },
+);
+
+const levels = computed(() => {
+  return info.value?.info?.map(lvl => `Level ${lvl.id} (${lvl.price} SOL)`);
+});
 
 const router = useRouter();
 
@@ -14,13 +39,15 @@ type Schema = z.output<typeof schema>;
 
 const state = reactive<Required<Schema>>({
   address: "",
-  level: levels[0],
+  level: levels.value[0],
 });
 
-async function check() {
-  const { data: isApproved } = await useAsyncData("wallet-check", () => WalletService.check({ address: state.address }));
-  if (isApproved) {
+function onWalletResult(result: { isApproved: boolean }) {
+  if (result.isApproved) {
     router.push("/registration/activating");
+  }
+  else {
+    console.warn("Not approved");
   }
 }
 
@@ -42,17 +69,20 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
         </p>
       </div>
       <div class="flex flex-col mb-12.5">
-        <p class="text-2xl mb-1 max-md:text-base">
+        <p class="text-2xl mb-2.5 max-md:text-base max-md:mb-1">
           Your upline address and ID
         </p>
-        <p class="text-neutral-400/60 text-lg mb-6 max-md:text-sm">
+        <p class="text-neutral-400/60 text-lg mb-6 max-md:text-sm max-md:mb-5.75">
           0xF9e57f124C85E451CFAFceb118729023CdcddDCf
         </p>
         <UFormField name="address">
-          <WalletApproveFeature v-model="state.address" @check="check" />
+          <WalletApproveFeature
+            v-model="state.address"
+            @result="onWalletResult"
+          />
         </UFormField>
       </div>
-      <UFormField label="Choose game level" name="level" class="text-2xl mb-7.25 max-md:text-base">
+      <UFormField label="Choose game level" name="level" class="text-2xl mb-6.25 max-md:text-base">
         <USelect v-model="state.level" class="w-142.5 h-17.5 mt-6 max-md:w-83.75 max-md:mt-10.5 max-md:h-14" variant="soft" size="md" trailing-icon="fci:select-open" :items="levels" :content="{ sideOffset: 0 }" />
       </UFormField>
       <div class="flex flex-col gap-3.75 text-2xl text-success-400 mb-11.5 max-md:text-base max-md:mb-31">
@@ -60,13 +90,13 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
           <p>
             Network verification (Smart chain)
           </p>
-          <UIcon name="fci:check" />
+          <UIcon name="fci:check" class="text-success-400" />
         </div>
         <div class="flex justify-between">
           <p>
             Balance check (At least 5.5 SOL)
           </p>
-          <UIcon name="fci:check" />
+          <UIcon name="fci:check" class="text-success-400" />
         </div>
       </div>
       <UButton label="Activate" class="flex justify-center text-xl h-16.25 rounded-3xl cursor-pointer max-md:h-15 max-md:text-base" type="submit" />

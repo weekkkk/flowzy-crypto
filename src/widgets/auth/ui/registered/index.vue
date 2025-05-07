@@ -7,13 +7,13 @@
       <h1 class="text-4xl max-md:text-xl">
         Registered
       </h1>
-      <UIcon name="fci:check" class="w-8 h-8" />
+      <UIcon name="fci:check" class="w-8 h-8 text-success-400" />
     </div>
     <div class="text-center text-2xl mb-5 max-md:text-base max-md:mb-6">
       <span class="text-neutral-400/60">Congratulations! You are succesfully </span>
       <span>registered</span>
     </div>
-    <USeparator color="crayola" class="opacity-18 max-md:mb-6" />
+    <USeparator color="crayola" class="opacity-18 mb-5 max-md:mb-6" />
     <div class="text-2xl text-center mb-10 max-md:text-base max-md:mb-35">
       <span class="text-neutral-400/60">Connect your Network game account to </span><br class="md:hidden">
       <span>telegram bot</span><br class="max-md:hidden">

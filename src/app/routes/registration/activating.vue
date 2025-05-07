@@ -3,7 +3,7 @@ useSeoMeta({
   title: "Authorization",
 });
 definePageMeta({
-  layout: false,
+  layout: "form",
 });
 </script>
 

@@ -1,4 +1,4 @@
-import type { WalletCheckReqDto, WalletGetInfoReqDto, WalletGetInfoResDto } from "./interfaces";
+import type { WalletCheckReqDto, WalletCheckResDto, WalletGetInfoReqDto, WalletGetInfoResDto } from "./interfaces";
 import { $wallet } from "./point";
 
 export class WalletService {
@@ -10,7 +10,7 @@ export class WalletService {
   }
 
   static async check(req: WalletCheckReqDto) {
-    const res = await $wallet<WalletGetInfoResDto>(`/check`, {
+    const res = await $wallet<WalletCheckResDto>(`/check`, {
       method: "POST",
       body: {
         address: req.address,

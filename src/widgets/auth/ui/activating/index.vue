@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-const router = useRouter();
-onMounted(() => {
-  setTimeout(() => {
-    router.push("/registration/done");
-  }, 3000);
-});
+// const router = useRouter();
+// onMounted(() => {
+//   setTimeout(() => {
+//     router.push("/registration/done");
+//   }, 3000);
+// });
 </script>
 
 <template>
@@ -14,7 +14,7 @@ onMounted(() => {
         <h1 class="text-4xl max-md:text-xl">
           Activating
         </h1>
-        <UIcon name="fci:circle" class="h-8 w-8" />
+        <UIcon name="fci:circle1" class="h-8 w-8" />
       </div>
       <p class="text-2xl text-neutral-400/60 mb-7.5 max-md:text-base">
         Your transactions in progress.
