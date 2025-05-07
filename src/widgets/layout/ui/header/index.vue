@@ -4,7 +4,8 @@ import { headerItems } from "./consts";
 
 /** События */
 const emit = defineEmits<LayoutHeaderWidgetEmits>();
-const router = useRouter();
+
+const route = useRoute();
 
 /** Пользователь авторизован */
 const isAuthenticated = ref(true);
@@ -14,35 +15,29 @@ const visibleDrawer = ref(false);
 /** Активный индекс вкладки */
 const activeTabIndex = computed({
   get() {
-    const currentPath = router.currentRoute.value.path;
+    const currentPath = route.path;
     const index = headerItems.findIndex(item => item.to === currentPath);
     return index !== -1 ? String(index) : undefined;
   },
-  set(payload: string | number) {
+  async set(payload: string | number) {
     const index = Number(payload);
     const selectedItem = headerItems[index];
     if (selectedItem?.to) {
-      router.push(selectedItem.to);
-      visibleDrawer.value = false;
+      await navigateTo(selectedItem.to);
+      close();
     }
   },
 });
-
-/** Переход по пути */
-function navigateToRoute(index: number | string) {
-  const selectedItem = headerItems[+index];
-
-  if (!selectedItem?.to)
-    return;
-
-  router.push(selectedItem.to);
+function close() {
   visibleDrawer.value = false;
 }
 /** Переключение отображения шторки */
 function toggleDrawer() {
   visibleDrawer.value = !visibleDrawer.value;
-  document.body.classList.toggle("overflow-hidden", visibleDrawer.value);
 }
+watch(visibleDrawer, () => {
+  document.body.classList.toggle("overflow-hidden", visibleDrawer.value);
+});
 /** Скрытие шторки */
 function onLogout() {
   visibleDrawer.value = false;
@@ -60,7 +55,7 @@ function onLogout() {
           </UButton>
         </div>
         <nav>
-          <UTabs v-model="activeTabIndex" :items="headerItems" class="max-md:hidden" @update:model-value="navigateToRoute" />
+          <UTabs v-model="activeTabIndex" :items="headerItems" class="max-md:hidden" />
         </nav>
         <div class="flex gap-2.5 w-full justify-end ml-14.5 max-md:hidden">
           <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />
@@ -81,7 +76,7 @@ function onLogout() {
       >
         <div v-if="visibleDrawer" class="bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
           <div class="flex flex-col justify-center items-center mt-57.25">
-            <UTabs v-model="activeTabIndex" :items="headerItems" orientation="vertical" @update:model-value="navigateToRoute" />
+            <UTabs v-model="activeTabIndex" :items="headerItems" orientation="vertical" />
             <div class="flex gap-4 mt-42">
               <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />
               <AuthLogoutFeature @logout="onLogout" />

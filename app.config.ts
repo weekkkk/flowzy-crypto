@@ -115,6 +115,15 @@ export default defineAppConfig({
               indicator: "bg-[linear-gradient(90deg,_var(--ui-primary)_0%,_var(--ui-primary)_50%,_var(--ui-secondary)_100%)]",
             },
           },
+          variant: {
+            soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700)",
+          },
+          size: {
+            md: {
+              base: "text-2xl py-5.5 pl-5.5 pr-0.25 max-md:text-base max-md:p-4.75",
+              trailing: "pe-0 max-md:pe-1",
+            },
+          },
         },
         compoundVariants: [{
           class: "h-5 max-md:h-3",
@@ -135,22 +144,6 @@ export default defineAppConfig({
             class: "bg-neutral-700 rounded-2xl max-md:rounded-[0.5rem]",
           },
         ],
-      },
-    },
-    input: {
-      slots: {
-        base: "placeholder:text-ui-color-neutral-400 rounded-3xl max-md:rounded-2xl",
-      },
-      variants: {
-        variant: {
-          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700)",
-        },
-        size: {
-          md: {
-            base: "text-2xl py-5.5 pl-5.5 pr-0.25 max-md:text-base max-md:p-4.75",
-            trailing: "pe-0 max-md:pe-1",
-          },
-        },
       },
     },
     select: {
