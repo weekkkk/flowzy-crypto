@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-
+const router = useRouter();
+function redirectToNetwork() {
+  router.push("/my-network");
+}
 </script>
 
 <template>
@@ -14,7 +17,7 @@
         </div>
       </div>
       <div class="flex justify-center md:block max-md:w-83.75">
-        <UButton label="My network" class="w-55 h-16.25 text-xl flex justify-center items-center col-start-1 max-md:row-start-3 max-md:row-span-2 max-md:w-37.75 max-md:h-15 max-md:text-base" />
+        <UButton label="My network" class="w-55 h-16.25 text-xl flex justify-center items-center col-start-1 max-md:row-start-3 max-md:row-span-2 max-md:w-37.75 max-md:h-15 max-md:text-base cursor-pointer" @click="redirectToNetwork" />
       </div>
       <StatUserWidget class="col-start-2 row-end-1 row-span-2 max-md:row-start-2 max-md:row-span-1 max-md:col-start-1 max-md:mt-0 self-end justify-self-end max-md:self-auto max-md:justify-self-auto max-md:mb-6 max-md:w-83.75 max-md:h-47.5" />
     </div>

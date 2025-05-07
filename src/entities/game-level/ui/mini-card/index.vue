@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { GameLevelCardEntryProps } from "./interfaces";
+import type { GameLevelMiniCardProps } from "./interfaces";
 import { GameLevelMiniCardStatesActive, GameLevelMiniCardStatesDefault, GameLevelMiniCardStatesUnavailable } from "#components";
 import { GameLevelMiniCardStates } from "./enums";
 
 /** Параметры */
-const props = defineProps<GameLevelCardEntryProps>();
+const props = defineProps<GameLevelMiniCardProps>();
 
 /** Получить состояние карточки */
 const getCardState = computed(() => {

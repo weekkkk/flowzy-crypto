@@ -1,1 +1,1 @@
-export type { GameLevelCardEntryProps } from "./props";
+export type { GameLevelMiniCardProps } from "./props";

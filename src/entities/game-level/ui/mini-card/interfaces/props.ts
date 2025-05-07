@@ -1,3 +1,3 @@
-export interface GameLevelCardEntryProps {
+export interface GameLevelMiniCardProps {
   info: GameLevelShortInfoDto;
 }
