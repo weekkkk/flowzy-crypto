@@ -1,27 +1,31 @@
 <script setup lang="ts">
 import type { LayoutHeaderWidgetEmits } from "./interfaces";
-import { headerItems } from "./consts";
+import { headerItems, headerNoAuthorizedItems } from "./consts";
 
 /** События */
 const emit = defineEmits<LayoutHeaderWidgetEmits>();
 
 const route = useRoute();
 
+const user = useState<AuthUserDto | undefined>("user");
+
 /** Пользователь авторизован */
-const isAuthenticated = ref(true);
+const isAuthenticated = computed(() => !!user.value);
 /** Состояние отображения шторки */
 const visibleDrawer = ref(false);
+
+const items = computed(() => user.value ? headerItems : headerNoAuthorizedItems);
 
 /** Активный индекс вкладки */
 const activeTabIndex = computed({
   get() {
     const currentPath = route.path;
-    const index = headerItems.findIndex(item => item.to === currentPath);
+    const index = items.value.findIndex(item => item.to === currentPath);
     return index !== -1 ? String(index) : undefined;
   },
   async set(payload: string | number) {
     const index = Number(payload);
-    const selectedItem = headerItems[index];
+    const selectedItem = items.value[index];
     if (selectedItem?.to) {
       await navigateTo(selectedItem.to);
       close();
@@ -40,7 +44,8 @@ watch(visibleDrawer, () => {
 });
 /** Скрытие шторки */
 function onLogout() {
-  visibleDrawer.value = false;
+  close();
+  user.value = undefined;
   emit("redirectToHome");
 }
 </script>
@@ -55,11 +60,13 @@ function onLogout() {
           </UButton>
         </div>
         <nav>
-          <UTabs v-model="activeTabIndex" :items="headerItems" class="max-md:hidden" />
+          <UTabs v-model="activeTabIndex" default-value="0" :items="items" class="max-md:hidden" />
         </nav>
         <div class="flex gap-2.5 w-full justify-end ml-14.5 max-md:hidden">
-          <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />
-          <AuthLogoutFeature @logout="onLogout" />
+          <template v-if="isAuthenticated">
+            <WalletInfoFeature :user-id="1" />
+            <AuthLogoutFeature @logout="onLogout" />
+          </template>
         </div>
       </div>
       <UButton class="md:hidden flex bg-neutral-800 p-2 rounded-3xl cursor-pointer z-50" color="neutral" @click="toggleDrawer">
@@ -76,9 +83,9 @@ function onLogout() {
       >
         <div v-if="visibleDrawer" class="bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
           <div class="flex flex-col justify-center items-center mt-57.25">
-            <UTabs v-model="activeTabIndex" :items="headerItems" orientation="vertical" />
-            <div class="flex gap-4 mt-42">
-              <WalletInfoFeature v-if="isAuthenticated" :user-id="1" />
+            <UTabs v-model="activeTabIndex" default-value="0" :items="items" orientation="vertical" />
+            <div v-if="isAuthenticated" class="flex gap-4 mt-42">
+              <WalletInfoFeature :user-id="1" />
               <AuthLogoutFeature @logout="onLogout" />
             </div>
           </div>

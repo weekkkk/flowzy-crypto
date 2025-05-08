@@ -96,7 +96,7 @@ export default defineAppConfig({
         },
         size: {
           md: {
-            base: "text-2xl max-md:text-base py-5.5 pl-5.5 max-md:p-4 max-md:pr-5 pr-0.25 bg-neutral-800",
+            base: "text-2xl max-md:text-base py-5.5 pl-5.5 max-md:p-4 max-md:pr-5 pr-0.25",
             trailing: "pe-0",
           },
         },
@@ -115,14 +115,14 @@ export default defineAppConfig({
               indicator: "bg-[linear-gradient(90deg,_var(--ui-primary)_0%,_var(--ui-primary)_50%,_var(--ui-secondary)_100%)]",
             },
           },
-          variant: {
-            soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700)",
-          },
           size: {
             md: {
               base: "text-2xl py-5.5 pl-5.5 pr-0.25 max-md:text-base max-md:p-4.75",
               trailing: "pe-0 max-md:pe-1",
             },
+          },
+          variant: {
+            soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700) ring-transparent",
           },
         },
         compoundVariants: [{
