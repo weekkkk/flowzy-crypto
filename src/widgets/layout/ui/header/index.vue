@@ -45,6 +45,8 @@ watch(visibleDrawer, () => {
 /** Скрытие шторки */
 function onLogout() {
   close();
+  const authorized = useCookie("authorized");
+  authorized.value = undefined;
   user.value = undefined;
   emit("redirectToHome");
 }
