@@ -28,8 +28,6 @@ const levels = computed(() => {
   return info.value?.info?.map(lvl => `Level ${lvl.id} (${lvl.price} SOL)`);
 });
 
-const router = useRouter();
-
 const schema = z.object({
   address: z.string().nonempty("This field is required"),
   level: z.string(),
@@ -42,17 +40,18 @@ const state = reactive<Required<Schema>>({
   level: levels.value[0],
 });
 
-function onWalletResult(result: { isApproved: boolean }) {
-  if (result.isApproved) {
-    router.push("/registration/activating");
-  }
-  else {
-    console.warn("Not approved");
-  }
-}
+// function onWalletResult(result: { isApproved: boolean }) {
+//   if (result.isApproved) {
+//     router.push("/registration/activating");
+//   }
+//   else {
+//     console.warn("Not approved");
+//   }
+// }
 
 function onSubmit(event: FormSubmitEvent<Schema>) {
   console.warn(event);
+  navigateTo("/registration/activating");
 }
 </script>
 
@@ -78,8 +77,8 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
         <UFormField name="address">
           <WalletApproveFeature
             v-model="state.address"
-            @result="onWalletResult"
           />
+          <!-- @result="onWalletResult" -->
         </UFormField>
       </div>
       <UFormField label="Choose game level" name="level" class="text-2xl mb-6.25 max-md:text-base">

@@ -11,9 +11,9 @@ const iconPositions = computed(() => {
 </script>
 
 <template>
-  <div class="relative max-md:h-39.75 max-md:w-40.75 w-72.5 h-60">
-    <div class="max-md:hidden absolute -inset-0.5 -bottom-1 rounded-3xl max-md:rounded-2xl bg-linear-270 from-(--ui-primary) to-(--ui-secondary)" />
-    <div class="bg-neutral-700 max-md:h-39.75 max-md:w-40.75 max-md:p-4 w-72.5 py-5.5 px-5 rounded-3xl max-md:rounded-2xl md:mb-2.5 relative">
+  <div class="relative max-md:h-39.75 max-md:w-40.75 w-72.5 md:mb-2.5">
+    <div class="max-md:hidden absolute -inset-0.5 rounded-3xl max-md:rounded-2xl bg-linear-270 from-(--ui-primary) to-(--ui-secondary)" />
+    <div class="bg-neutral-700 absolute inset-0 max-md:h-39.75 max-md:w-40.75 max-md:p-4 w-72.5 py-5.5 px-5 rounded-3xl max-md:rounded-2xl">
       <div class="flex justify-between relative mb-11.25 max-md:mb-4.75 text-lg max-md:text-sm">
         <div class="text-neutral-400 opacity-60">
           level {{ info.level }}

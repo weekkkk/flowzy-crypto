@@ -2,7 +2,7 @@
 export const headerItems = [
   {
     label: "Dashboard",
-    to: "/",
+    to: "/dashboard",
   },
   {
     label: "My network",

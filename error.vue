@@ -5,7 +5,9 @@ defineProps({
   error: Object as () => NuxtError,
 });
 
-const handleError = () => clearError({ redirect: "/" });
+const route = useRoute();
+
+const handleError = () => clearError({ redirect: route.path === "/" ? "/dashboard" : "/" });
 </script>
 
 <template>
