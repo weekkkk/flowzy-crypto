@@ -25,7 +25,7 @@ const { data } = await useAsyncData(
 </script>
 
 <template>
-  <div class="grid grid-cols-5 max-md:grid-cols-2 gap-6 max-md:gap-2.5 md:bg-neutral-800 rounded-5xl md:py-12.5 md:px-12">
+  <div class="grid grid-cols-5 gap-x-10 max-md:grid-cols-2 gap-y-8 max-md:gap-2.5 md:bg-neutral-800 rounded-5xl md:py-12.5 md:px-12">
     <GameLevelCard v-for="item in data?.info" :key="item.id" :info="item" />
   </div>
 </template>

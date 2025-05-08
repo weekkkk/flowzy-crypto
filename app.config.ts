@@ -101,50 +101,50 @@ export default defineAppConfig({
           },
         },
       },
-      progress: {
-        slots: {
-          base: "rounded",
-          indicator: "rounded",
-        },
-        variants: {
-          color: {
-            neutral: {
-              indicator: "neutral-500 opacity-50",
-            },
-            primary: {
-              indicator: "bg-[linear-gradient(90deg,_var(--ui-primary)_0%,_var(--ui-primary)_50%,_var(--ui-secondary)_100%)]",
-            },
+    },
+    progress: {
+      slots: {
+        base: "rounded",
+        indicator: "rounded",
+      },
+      variants: {
+        color: {
+          neutral: {
+            indicator: "neutral-500 opacity-50",
           },
-          size: {
-            md: {
-              base: "text-2xl py-5.5 pl-5.5 pr-0.25 max-md:text-base max-md:p-4.75",
-              trailing: "pe-0 max-md:pe-1",
-            },
-          },
-          variant: {
-            soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700) ring-transparent",
+          primary: {
+            indicator: "bg-[linear-gradient(90deg,_var(--ui-primary)_0%,_var(--ui-primary)_50%,_var(--ui-secondary)_100%)]",
           },
         },
-        compoundVariants: [{
-          class: "h-5 max-md:h-3",
-        }],
+        size: {
+          md: {
+            base: "text-2xl py-5.5 pl-5.5 pr-0.25 max-md:text-base max-md:p-4.75",
+            trailing: "pe-0 max-md:pe-1",
+          },
+        },
+        variant: {
+          soft: "bg-(--ui-color-neutral-700) hover:bg-(--ui-color-neutral-700) focus:bg-(--ui-color-neutral-700) ring-transparent",
+        },
       },
-      badge: {
-        compoundVariants: [
-          {
-            color: "primary",
-            class: "bg-info-400 rounded-2xl max-md:rounded-[0.5rem]",
-          },
-          {
-            color: "secondary",
-            class: "bg-secondary-200 rounded-2xl max-md:rounded-[0.5rem]",
-          },
-          {
-            color: "neutral",
-            class: "bg-neutral-700 rounded-2xl max-md:rounded-[0.5rem]",
-          },
-        ],
-      },
+      compoundVariants: [{
+        class: "h-5 max-md:h-3",
+      }],
+    },
+    badge: {
+      compoundVariants: [
+        {
+          color: "primary",
+          class: "bg-info-400 rounded-2xl max-md:rounded-[0.5rem]",
+        },
+        {
+          color: "secondary",
+          class: "bg-secondary-200 rounded-2xl max-md:rounded-[0.5rem]",
+        },
+        {
+          color: "neutral",
+          class: "bg-neutral-700 rounded-2xl max-md:rounded-[0.5rem]",
+        },
+      ],
     },
     select: {
       slots: {

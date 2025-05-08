@@ -11,9 +11,9 @@ const iconPositions = computed(() => {
 </script>
 
 <template>
-  <div class="relative max-md:h-39.75 max-md:w-40.75 w-72.5 md:mb-2.5">
+  <div class="relative max-md:h-39.75">
     <div class="max-md:hidden absolute -inset-0.5 rounded-3xl max-md:rounded-2xl bg-linear-270 from-(--ui-primary) to-(--ui-secondary)" />
-    <div class="bg-neutral-700 absolute inset-0 max-md:h-39.75 max-md:w-40.75 max-md:p-4 w-72.5 py-5.5 px-5 rounded-3xl max-md:rounded-2xl">
+    <div class="bg-neutral-700 relative inset-0 max-md:h-39.75 max-md:p-4 py-5.5 px-5 rounded-3xl max-md:rounded-2xl">
       <div class="flex justify-between relative mb-11.25 max-md:mb-4.75 text-lg max-md:text-sm">
         <div class="text-neutral-400 opacity-60">
           level {{ info.level }}
@@ -24,11 +24,13 @@ const iconPositions = computed(() => {
         </div>
       </div>
       <div class="relative">
-        <UProgress v-model="info.progress" color="primary" />
+        <div class="bg-linear-470 primary-gradient rounded">
+          <UProgress v-model="info.progress" size="2xl" color="primary" class="p-[0.1rem]" />
+        </div>
         <div
           v-for="(pos, index) in iconPositions"
           :key="index"
-          class="absolute -top-0.5 max-md:-top-1.5"
+          class="absolute -top-0.5 max-md:-top-1"
           :style="{ left: `${pos}%` }"
         >
           <UIcon name="fci:solana" class="w-6 h-6 max-md:w-3 max-md:h-3" />
