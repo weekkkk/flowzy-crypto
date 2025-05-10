@@ -6,7 +6,7 @@ defineProps<GameLevelCardErrorProps>();
 </script>
 
 <template>
-  <div class="bg-error-500 max-md:h-39.75 w-72.5 py-5.5 px-5 max-md:w-40.75 max-md:p-4 rounded-3xl max-md:rounded-2xl md:mb-2.5">
+  <div class="bg-error-500 max-md:h-39.75 py-5.5 px-5 max-md:p-4 rounded-3xl max-md:rounded-2xl">
     <div class="flex justify-between text-lg max-md:text-sm">
       <div class="text-neutral-400 opacity-60">
         level {{ info.level }}

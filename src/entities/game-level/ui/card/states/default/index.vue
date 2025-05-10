@@ -6,7 +6,7 @@ defineProps<GameLevelCardDefaultProps>();
 </script>
 
 <template>
-  <div class="bg-neutral-700 max-md:h-39.75 max-md:w-40.75 max-md:p-4 max-md:text-sm w-72.5 py-5.5 px-5 max-md:rounded-2xl rounded-3xl md:mb-2.5">
+  <div class="bg-neutral-700 max-md:h-39.75 max-md:p-4 max-md:text-sm py-5.5 px-5 max-md:rounded-2xl rounded-3xl">
     <div class="flex justify-between text-lg max-md:text-sm">
       <div class="text-neutral-400 opacity-60">
         level {{ info.level }}

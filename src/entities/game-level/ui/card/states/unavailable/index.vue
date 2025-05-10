@@ -6,8 +6,9 @@ defineProps<GameLevelCardUnavailableProps>();
 </script>
 
 <template>
-  <div class="relative max-md:h-39.75 max-md:w-40.75 w-72.5 h-60">
-    <div class="max-md:hidden absolute -inset-0.5 -bottom-0.5 rounded-3xl bg-linear-270 from-(--ui-primary) to-(--ui-secondary)" />    <div class="bg-neutral-700 max-md:h-39.75 max-md:w-40.75 h-full max-md:p-4 max-md:rounded-2xl max-md:text-sm w-72.5 py-5.5 px-5 rounded-3xl md:mb-2.5 relative">
+  <div class="relative max-md:h-39.75 h-60">
+    <div class="max-md:hidden absolute -inset-0.5 -bottom-0.5 rounded-3xl bg-linear-270 from-(--ui-primary) to-(--ui-secondary)" />
+    <div class="bg-neutral-700 max-md:h-39.75 h-full max-md:p-4 max-md:rounded-2xl max-md:text-sm py-5.5 px-5 rounded-3xl relative">
       <div class="flex justify-between z-20 relative text-lg max-md:text-sm">
         <div class="text-neutral-400 opacity-60">
           level {{ info.level }}
