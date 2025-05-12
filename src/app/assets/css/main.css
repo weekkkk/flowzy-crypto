@@ -2,7 +2,7 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: "neuemontreal", sans-serif;
+  --font-sans: "neuemontreal", "Times New Roman";
 
   /* 5px */
   --text-xxs: 0.3125rem;

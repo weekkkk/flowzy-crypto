@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxt/image", "@nuxt/ui", "@nuxt/eslint"],
+  modules: ["@nuxt/image", "@nuxt/ui", "@nuxt/eslint", "@nuxthub/core"],
   components: {
     dirs: [
       {
@@ -91,7 +91,7 @@ export default defineNuxtConfig({
 
   },
   fonts: {
-    families: [{ name: "neuemontreal", provider: "local", global: true }],
+    families: [{ name: "neuemontreal", provider: "local", global: true, weights: [300, 400, 500, 700] }],
   },
   dir: {
     pages: "./src/app/routes",
