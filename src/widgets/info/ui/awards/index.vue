@@ -4,7 +4,8 @@
       Awards
     </div>
     <div class="md:flex">
-      <NuxtImg src="/images/chart-2.svg" class="w-206.75 h-92.5 mt-14.25 max-md:mt-3.5 max-md:w-83.75 max-md:h-37.5" />
+      <!-- <UIcon name="fci:chart-2" class="w-206.75 h-92.5 mt-14.25 max-md:mt-3.5 max-md:w-83.75 max-md:h-37.5" /> -->
+      <UiIconChart2 class="w-206.75 h-92.5 mt-14.25 max-md:mt-3.5 max-md:w-83.75 max-md:h-37.5" />
       <div class="md:ml-23.75 text-2xl max-md:text-base mt-1.75 max-md:mt-6.5">
         <div>
           Rewards in
@@ -61,10 +62,14 @@
       </div>
     </div>
     <div class="md:flex md:justify-between mt-14.5 max-md:mt-7.5">
-      <NuxtImg src="/images/info-basic_reward.svg" class="max-md:hidden w-175 h-44" />
-      <NuxtImg src="/images/info-referral_bonus.svg" class="max-md:hidden w-175 h-47" />
-      <NuxtImg src="/images/basic_reward-mobile.svg" class="md:hidden w-80.5 h-34.25" />
-      <NuxtImg src="/images/referral_bonus-mobile.svg" class="md:hidden w-83.75 h-41.5 mt-8.5" />
+      <UiIconInfoBasicReward class="max-md:hidden w-175 h-44" />
+      <!-- <UIcon name="fci:info-basic-reward" class="max-md:hidden w-175 h-44" /> -->
+      <UiIconInfoReferralBonus class="max-md:hidden w-175 h-47" />
+      <!-- <UIcon name="fci:info-referral-bonus" class="max-md:hidden w-175 h-47" /> -->
+      <UiIconBasicRewardMobile class="md:hidden w-80.5 h-34.25" />
+      <!-- <UIcon name="fci:basic-reward-mobile" class="md:hidden w-80.5 h-34.25" /> -->
+      <UiIconReferralBonusMobile class="md:hidden w-83.75 h-41.5 mt-8.5" />
+      <!-- <UIcon name="fci:referral-bonus-mobile" class="md:hidden w-83.75 h-41.5 mt-8.5" /> -->
     </div>
   </div>
 </template>

@@ -11,7 +11,8 @@
         </div>
         <UIcon name="fci:arrow-right" class="w-6 h-6" />
       </div>
-      <NuxtImg src="/images/information-stat.svg" placeholder class="w-408 h-171.25 max-md:w-83.75 max-md:h-35" />
+      <UiIconInformationStat class="w-408 h-171.25 max-md:w-83.75 max-md:h-35" />
+      <!-- <UIcon name="fci:information-stat" class="w-408 h-171.25 max-md:w-83.75 max-md:h-35" /> -->
     </div>
   </div>
 </template>

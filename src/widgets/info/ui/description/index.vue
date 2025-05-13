@@ -82,7 +82,7 @@
         to 3rd generation whenever<br class="max-md:hidden">they earn the basic<br class="md:hidden">reward on the level.
       </div>
     </div>
-    <NuxtImg src="/images/chart-1.svg" class="max-md:hidden w-59 h-58 md:ml-39" />
-    <NuxtImg src="/images/chart-1-mobile.svg" class="md:hidden w-45.75 h-43.25 mt-6 ml-16" />
+    <UiIconChart1 class="max-md:hidden w-59 h-58 md:ml-39" />
+    <UiIconChart1Mobile class="md:hidden w-45.75 h-43.25 mt-6 ml-16" />
   </div>
 </template>

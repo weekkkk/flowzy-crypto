@@ -27,7 +27,9 @@
         By expanding your affiliate network, you multiply your passive income.
       </div>
     </div>
-    <NuxtImg src="/images/info.svg" class="max-md:hidden w-93 h-90" />
-    <NuxtImg src="/images/info-mobile.svg" class="md:hidden ml-8 w-52.5 h-54 mt-6" />
+    <UiIconInfo class="max-md:hidden w-93 h-90" />
+    <!-- <UIcon name="fci:info" class="max-md:hidden w-93 h-90" /> -->
+    <UiIconInfoMobile class="md:hidden ml-8 w-52.5 h-54 mt-6" />
+    <!-- <UIcon name="fci:info-mobile" class="md:hidden ml-8 w-52.5 h-54 mt-6" /> -->
   </div>
 </template>
