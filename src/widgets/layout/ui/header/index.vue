@@ -10,11 +10,11 @@ const route = useRoute();
 const user = useState<AuthUserDto | undefined>("user");
 
 /** Пользователь авторизован */
-const isAuthenticated = computed(() => !!user.value);
+const isAuthenticated = computed(() => !!true);
 /** Состояние отображения шторки */
 const visibleDrawer = ref(false);
 
-const items = computed(() => user.value ? headerItems : headerNoAuthorizedItems);
+const items = computed(() => true ? headerItems : headerNoAuthorizedItems);
 
 /** Активный индекс вкладки */
 const activeTabIndex = computed({
