@@ -44,7 +44,7 @@ const turnover = computed(() => {
     <USeparator color="crayola" class="opacity-18" />
     <StatGeneralCardItem :record="turnover">
       <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">SOL </span>
-      <span class="opacity-60">turnover</span>
+      <span>turnover</span>
     </StatGeneralCardItem>
   </ul>
 </template>
