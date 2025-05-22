@@ -11,7 +11,7 @@
           Rewards in
           <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
             SOL
-          </span>are generated when new<br class="md:hidden">players activate levels.
+          </span>are generated when new <br class="md:hidden">players activate levels.
         </div>
         <div class="mt-5 max-md:mt-4.5">
           100% OF THE LEVEL ACTIVATION AMOUNT IS<br class="md:hidden">DIVIDED<br class="max-md:hidden">INTO 4 PARTS: 74%, 13%, 8%, 5%
