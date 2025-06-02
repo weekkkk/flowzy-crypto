@@ -71,6 +71,7 @@ function onLogout() {
           </template>
         </div>
       </div>
+      <WalletInfoFeature short :user-id="1" class="mr-2 md:hidden" />
       <UButton class="md:hidden flex bg-neutral-800 p-2 rounded-3xl cursor-pointer z-50" color="neutral" @click="toggleDrawer">
         <UIcon v-show="visibleDrawer" name="fci:cross" class="w-6 h-6 text-neutral-200" />
         <UIcon v-show="!visibleDrawer" name="fci:menu" class="w-6 h-6 text-neutral-200" />
@@ -86,7 +87,7 @@ function onLogout() {
         <div v-if="visibleDrawer" class="bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
           <div class="flex flex-col justify-center items-center mt-57.25">
             <UTabs v-model="activeTabIndex" default-value="0" :items="items" orientation="vertical" />
-            <div v-if="isAuthenticated" class="flex gap-4 mt-42">
+            <div v-if="isAuthenticated" class="sticky bottom-0 flex gap-4 mt-42">
               <WalletInfoFeature :user-id="1" />
               <AuthLogoutFeature @logout="onLogout" />
             </div>

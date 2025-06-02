@@ -8,7 +8,7 @@
         <span class="text-secondary-200">
           REFERRAL BONUS
         </span>
-        - 26% is split between<br class="md:hidden">higher referral partners up to the 3rd partner upline.<br>
+        - 26% is split between<br class="md:hidden"> higher referral partners up to the 3rd partner upline.<br>
         1st higher tier gets 13%<br>
         2nd higher tier receives 8%<br>
         3rd higher level receives 5%<br>

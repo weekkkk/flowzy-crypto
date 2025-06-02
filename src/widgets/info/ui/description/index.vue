@@ -37,14 +37,14 @@
         <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
           SMART CONTRACT<br class="md:hidden"> GAME
         </span>that allows you to<br class="max-md:hidden">
-        earn PASSIVE INCOME<br class="md:hidden">in SOL straight to your wallet even without<br>
+        earn PASSIVE INCOME<br class="md:hidden"> in SOL straight to your wallet even without<br>
         inviting personal partners.
       </div>
       <div class="mt-5">
         Rewards in SOL from the game are instantly sent <br class="md:hidden">to your personal<br class="max-md:hidden">crypto wallet.
       </div>
       <div class="mt-4.5">
-        <span class="font-medium">Each</span> level is a separate structure thanks to the<br class="md:hidden">random placement.<br>
+        <span class="font-medium">Each</span> level is a separate structure thanks to the<br class="md:hidden"> random placement.<br>
         Easy interaction, the Game uses only SOL.
       </div>
       <div class="mt-5">
@@ -57,7 +57,7 @@
             SENT INSTANTLY
           </span>
         </span>
-        and<br class="md:hidden">directly to the participants personal wallets.
+        and<br class="md:hidden"> directly to the participants personal wallets.
       </div>
     </div>
   </div>
@@ -71,14 +71,14 @@
         without the
         <br class="max-md:hidden">need to invite personal partners.
       </div>
-      <div class="mt-5 max-md:hidden">
+      <div class="mt-5 font-medium max-md:hidden">
         Each level can generate 2 types of rewards:
       </div>
       <div class="mt-2.5 max-md:hidden">
-        <span class="text-secondary-400">BASIC LEVEL REWARD</span>- 74% of the level value from each cycle.
+        <span class="text-secondary-200">BASIC LEVEL REWARD</span> - 74% of the level value from each cycle.
       </div>
       <div class="mt-2.5 max-md:mt-4">
-        <span class="text-primary-400 max-md:text-info-400">REFERRAL BONUS</span> - 26% from partners down<br class="md:hidden">
+        <span class="text-info-400">REFERRAL BONUS</span> - 26% from partners down<br class="md:hidden">
         to 3rd generation whenever<br class="max-md:hidden">they earn the basic<br class="md:hidden">reward on the level.
       </div>
     </div>

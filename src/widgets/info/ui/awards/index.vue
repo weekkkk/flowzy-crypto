@@ -6,7 +6,7 @@
     <div class="md:flex">
       <!-- <UIcon name="fci:chart-2" class="w-206.75 h-92.5 mt-14.25 max-md:mt-3.5 max-md:w-83.75 max-md:h-37.5" /> -->
       <UiIconChart2 class="w-206.75 h-92.5 mt-14.25 max-md:mt-3.5 max-md:w-83.75 max-md:h-37.5" />
-      <div class="md:ml-23.75 text-2xl max-md:text-base mt-1.75 max-md:mt-6.5">
+      <div class="md:ml-15.75 text-2xl max-md:text-base mt-1.75 max-md:mt-6.5">
         <div>
           Rewards in
           <span class="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
@@ -14,16 +14,15 @@
           </span>are generated when new<br class="md:hidden">players activate levels.
         </div>
         <div class="mt-5 max-md:mt-4.5">
-          100% OF THE LEVEL ACTIVATION AMOUNT IS<br class="md:hidden">DIVIDED<br class="max-md:hidden">INTO 4 PARTS: 74%, 13%, 8%, 5%
+          100% OF THE LEVEL ACTIVATION AMOUNT IS<br class="md:hidden">DIVIDED INTO 4 <br class="max-md:hidden">PARTS: 74%, 13%, 8%, 5%
         </div>
         <div class="mt-5 max-md:mt-3.5">
-          <span class="text-secondary-400">BASIC Reward - 74%</span> goes to a random higher<br class="md:hidden">
+          <span class="text-secondary-200">BASIC Reward - 74%</span> goes to a random higher<br class="md:hidden">
           participant in the level structure
         </div>
         <div class="mt-4.5">
-          <span class="text-secondary-400">REFERRAL BONUS - 26%</span> is split between<br class="md:hidden">
-          higher referral<br class="max-md:hidden">
-          partners up to the 3rd partner<br class="md:hidden">ascending tier.
+          <span class="text-secondary-200">REFERRAL BONUS - 26%</span> is split between<br class="md:hidden">
+          higher referral partners up to the <br class="max-md:hidden"> 3rd partner<br class="md:hidden">ascending tier.
         </div>
         <div class="mt-2.75">
           <span class="text-info-400">

@@ -2,7 +2,7 @@ export default defineAppConfig({
   ui: {
     button: {
       slots: {
-        base: "rounded-full disabled:opacity-100 aria-disabled:opacity-100",
+        base: "rounded-full disabled:opacity-100 aria-disabled:opacity-100 hover:opacity-85",
       },
       size: {
         md: {
