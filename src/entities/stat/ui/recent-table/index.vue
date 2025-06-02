@@ -2,12 +2,32 @@
 import type { StatRecentTableProps } from "./interfaces";
 import relativeTime from "dayjs/plugin/relativeTime";
 import dayjs from "./utils";
+import "dayjs/locale/en";
 
 withDefaults(defineProps<StatRecentTableProps>(), {
   records: () => [],
 });
 
 dayjs.extend(relativeTime);
+
+// Переопределяем локаль
+dayjs.locale("en", {
+  relativeTime: {
+    future: "in %s",
+    past: "%s ago",
+    s: "a few seconds",
+    m: "1 minute", // <-- Заменил "a minute" на "1 minute"
+    mm: "%d minutes",
+    h: "1 hour", // <-- Заменил "an hour" на "1 hour"
+    hh: "%d hours",
+    d: "1 day",
+    dd: "%d days",
+    M: "1 month",
+    MM: "%d months",
+    y: "1 year",
+    yy: "%d years",
+  },
+});
 
 function getPassedTime(date: number) {
   return dayjs(date).fromNow();
