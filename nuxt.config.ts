@@ -1,6 +1,23 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ["@nuxt/image", "@nuxt/ui", "@nuxt/eslint", "@nuxthub/core"],
+  vite: {
+    esbuild: {
+      target: "esnext",
+    },
+    build: {
+      target: "esnext",
+    },
+    optimizeDeps: {
+      include: ["@coral-xyz/anchor", "@solana/web3.js", "buffer"],
+      esbuildOptions: {
+        target: "esnext",
+      },
+    },
+    define: {
+      "process.env.BROWSER": true,
+    },
+  },
   components: {
     dirs: [
       {
@@ -110,5 +127,8 @@ export default defineNuxtConfig({
       title: "Default",
       titleTemplate: "%s | Flowzy Crypto",
     },
+  },
+  runtimeConfig: {
+    ancorProgramKey: "D4zv6uyBk6tN2oqgSuDdrktAMkeqrNtJpAYLQzRLVawV",
   },
 });

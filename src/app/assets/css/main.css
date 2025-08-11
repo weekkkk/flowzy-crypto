@@ -78,3 +78,7 @@ body,
 .primary-gradient {
   @apply from-secondary-400 to-primary-400;
 }
+
+.swv-button-icon, .swv-button-icon img {
+  @apply !h-6 !w-6;
+}

@@ -1,40 +1,15 @@
 <script setup lang="ts">
 import type { LayoutHeaderWidgetEmits } from "./interfaces";
-import { headerItems, headerNoAuthorizedItems } from "./consts";
+import Tabs from "./Tabs.vue";
 
 /** События */
 const emit = defineEmits<LayoutHeaderWidgetEmits>();
 
-const route = useRoute();
+const { connected } = useExtendedWallet();
 
-const user = useState<AuthUserDto | undefined>("user");
-
-/** Пользователь авторизован */
-const isAuthenticated = computed(() => !!user.value);
 /** Состояние отображения шторки */
 const visibleDrawer = ref(false);
 
-const items = computed(() => user.value ? headerItems : headerNoAuthorizedItems);
-
-/** Активный индекс вкладки */
-const activeTabIndex = computed({
-  get() {
-    const currentPath = route.path;
-    const index = items.value.findIndex(item => item.to === currentPath);
-    return index !== -1 ? String(index) : undefined;
-  },
-  async set(payload: string | number) {
-    const index = Number(payload);
-    const selectedItem = items.value[index];
-    if (selectedItem?.to) {
-      await navigateTo(selectedItem.to);
-      close();
-    }
-  },
-});
-function close() {
-  visibleDrawer.value = false;
-}
 /** Переключение отображения шторки */
 function toggleDrawer() {
   visibleDrawer.value = !visibleDrawer.value;
@@ -42,14 +17,6 @@ function toggleDrawer() {
 watch(visibleDrawer, () => {
   document.body.classList.toggle("overflow-hidden", visibleDrawer.value);
 });
-/** Скрытие шторки */
-function onLogout() {
-  close();
-  const authorized = useCookie("authorized");
-  authorized.value = undefined;
-  user.value = undefined;
-  emit("redirectToHome");
-}
 </script>
 
 <template>
@@ -62,13 +29,16 @@ function onLogout() {
           </UButton>
         </div>
         <nav>
-          <UTabs v-model="activeTabIndex" default-value="0" :items="items" class="max-md:hidden" />
+          <Tabs class="max-md:hidden" />
         </nav>
-        <div class="flex gap-2.5 w-full justify-end ml-14.5 max-md:hidden">
-          <template v-if="isAuthenticated">
-            <WalletInfoFeature :user-id="1" />
-            <AuthLogoutFeature @logout="onLogout" />
-          </template>
+        <div class="flex gap-2.5 w-full justify-end max-md:hidden ml-14.5">
+          <ClientOnly>
+            <template v-if="connected">
+              <UiLibSolanaWalletBalance />
+              <UiLibSolanaWallet />
+              <UiLibSolanaDisconnectWallet />
+            </template>
+          </ClientOnly>
         </div>
       </div>
       <WalletInfoFeature short :user-id="1" class="mr-2 md:hidden" />
@@ -86,11 +56,15 @@ function onLogout() {
       >
         <div v-if="visibleDrawer" class="bg-neutral-900 fixed top-0 left-0 w-full h-screen z-40">
           <div class="flex flex-col justify-center items-center mt-57.25">
-            <UTabs v-model="activeTabIndex" default-value="0" :items="items" orientation="vertical" />
-            <div v-if="isAuthenticated" class="sticky bottom-0 flex gap-4 mt-42">
-              <WalletInfoFeature :user-id="1" />
-              <AuthLogoutFeature @logout="onLogout" />
-            </div>
+            <Tabs orientation="vertical" />
+            <ClientOnly>
+              <div v-if="connected" class="sticky bottom-0 flex gap-4 mt-42">
+                <UiLibSolanaWallet />
+                <UiLibSolanaDisconnectWallet />
+              <!-- <WalletInfoFeature :user-id="1" /> -->
+              <!-- <AuthLogoutFeature @logout="onLogout" /> -->
+              </div>
+            </ClientOnly>
           </div>
         </div>
       </Transition>
