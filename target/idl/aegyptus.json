@@ -4,8 +4,7 @@
     "name": "aegyptus",
     "version": "0.1.0",
     "spec": "0.1.0",
-    "description": "Created with Anchor",
-    "address": "D4zv6uyBk6tN2oqgSuDdrktAMkeqrNtJpAYLQzRLVawV"
+    "description": "Created with Anchor"
   },
   "instructions": [
     {
@@ -31,7 +30,53 @@
           "writable": true
         },
         {
-          "name": "userAccount",
+          "name": "universe_account",
+          "writable": true,
+          "pda": {
+            "seeds": []
+          }
+        },
+        {
+          "name": "vault_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "master_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "recipient"
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_account",
           "writable": true,
           "pda": {
             "seeds": [
@@ -52,7 +97,7 @@
           }
         },
         {
-          "name": "lakeAccount",
+          "name": "lake_account",
           "writable": true,
           "pda": {
             "seeds": [
@@ -73,14 +118,49 @@
           }
         },
         {
-          "name": "masterFishAccount"
+          "name": "user_lake_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "signer"
+              },
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  107,
+                  101
+                ]
+              },
+              {
+                "kind": "arg",
+                "path": "lake"
+              }
+            ]
+          }
         },
         {
-          "name": "userFishAccount",
+          "name": "master_fish_account",
           "writable": true
         },
         {
-          "name": "systemProgram",
+          "name": "user_fish_account",
+          "writable": true
+        },
+        {
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
@@ -110,28 +190,52 @@
           "signer": true
         },
         {
-          "name": "operator",
+          "name": "universe_account",
           "writable": true,
+          "pda": {
+            "seeds": []
+          }
+        },
+        {
+          "name": "vault_account",
           "pda": {
             "seeds": [
               {
                 "kind": "const",
                 "value": [
-                  111,
-                  112,
-                  101,
-                  114,
+                  118,
                   97,
-                  116,
-                  111,
-                  114
+                  117,
+                  108,
+                  116
                 ]
               }
             ]
           }
         },
         {
-          "name": "lakeAccount",
+          "name": "user_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  115,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "vault_account"
+              }
+            ]
+          }
+        },
+        {
+          "name": "lake_account",
           "writable": true,
           "pda": {
             "seeds": [
@@ -152,7 +256,7 @@
           }
         },
         {
-          "name": "fishAccount",
+          "name": "fish_account",
           "writable": true,
           "pda": {
             "seeds": [
@@ -191,13 +295,13 @@
           }
         },
         {
-          "name": "systemProgram",
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
       "args": [
         {
-          "name": "lake",
+          "name": "_lake",
           "type": "u8"
         }
       ]
@@ -221,7 +325,32 @@
           "signer": true
         },
         {
-          "name": "userAccount",
+          "name": "universe_account",
+          "writable": true,
+          "pda": {
+            "seeds": []
+          }
+        },
+        {
+          "name": "vault_account",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "user_account",
           "writable": true,
           "pda": {
             "seeds": [
@@ -242,11 +371,12 @@
           }
         },
         {
-          "name": "masterAccount",
+          "name": "master_account",
+          "writable": true,
           "optional": true
         },
         {
-          "name": "systemProgram",
+          "name": "system_program",
           "address": "11111111111111111111111111111111"
         }
       ],
@@ -255,7 +385,7 @@
   ],
   "accounts": [
     {
-      "name": "fishAccountData",
+      "name": "FishAccountData",
       "discriminator": [
         143,
         17,
@@ -268,7 +398,7 @@
       ]
     },
     {
-      "name": "lakeAccountData",
+      "name": "LakeAccountData",
       "discriminator": [
         42,
         88,
@@ -281,7 +411,20 @@
       ]
     },
     {
-      "name": "userAccountData",
+      "name": "UniverseAccountData",
+      "discriminator": [
+        114,
+        16,
+        186,
+        105,
+        41,
+        175,
+        118,
+        221
+      ]
+    },
+    {
+      "name": "UserAccountData",
       "discriminator": [
         75,
         191,
@@ -292,14 +435,35 @@
         123,
         139
       ]
+    },
+    {
+      "name": "UserLakeAccountData",
+      "discriminator": [
+        23,
+        176,
+        185,
+        190,
+        115,
+        247,
+        153,
+        16
+      ]
     }
   ],
   "types": [
     {
-      "name": "fishAccountData",
+      "name": "FishAccountData",
       "type": {
         "kind": "struct",
         "fields": [
+          {
+            "name": "prev_sequence",
+            "type": "u32"
+          },
+          {
+            "name": "payment_count",
+            "type": "u32"
+          },
           {
             "name": "owner",
             "type": "pubkey"
@@ -308,7 +472,7 @@
       }
     },
     {
-      "name": "lakeAccountData",
+      "name": "LakeAccountData",
       "type": {
         "kind": "struct",
         "fields": [
@@ -320,7 +484,31 @@
       }
     },
     {
-      "name": "userAccountData",
+      "name": "UniverseAccountData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "lake_count",
+            "type": "u32"
+          },
+          {
+            "name": "user_count",
+            "type": "u32"
+          },
+          {
+            "name": "transaction_count",
+            "type": "u32"
+          },
+          {
+            "name": "transaction_sum",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserAccountData",
       "type": {
         "kind": "struct",
         "fields": [
@@ -329,26 +517,44 @@
             "type": "pubkey"
           },
           {
-            "name": "lastLake",
+            "name": "last_lake",
             "type": "u8"
           },
           {
-            "name": "master1",
-            "type": {
-              "option": "pubkey"
-            }
+            "name": "slave_count",
+            "type": "u32"
           },
           {
-            "name": "master2",
-            "type": {
-              "option": "pubkey"
-            }
+            "name": "lake_income",
+            "type": "u64"
           },
           {
-            "name": "master3",
-            "type": {
-              "option": "pubkey"
-            }
+            "name": "slave_income",
+            "type": "u64"
+          },
+          {
+            "name": "master_1",
+            "type": "pubkey"
+          },
+          {
+            "name": "master_2",
+            "type": "pubkey"
+          },
+          {
+            "name": "master_3",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UserLakeAccountData",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "first_sequence",
+            "type": "u32"
           }
         ]
       }

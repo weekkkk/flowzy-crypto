@@ -1,8 +1,10 @@
-export interface GameLevelShortInfoDto {
+import type { GameLevelStatusEnum } from "../enums";
+
+export interface GameLevelShortDto {
   id: number;
   level: number;
   price: number;
-  state: string;
+  status: GameLevelStatusEnum;
   partnerBonus: number;
   profitLevel: number;
   userEarnings: number[];

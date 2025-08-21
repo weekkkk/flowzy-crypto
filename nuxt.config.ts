@@ -17,6 +17,11 @@ export default defineNuxtConfig({
     define: {
       "process.env.BROWSER": true,
     },
+    resolve: {
+      alias: {
+        buffer: "buffer",
+      },
+    },
   },
   components: {
     dirs: [

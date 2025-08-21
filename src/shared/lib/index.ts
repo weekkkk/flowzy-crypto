@@ -1,1 +1,4 @@
-export { useExtendedWallet } from "./solana";
+export {
+  useExtendedWallet,
+  useWalletBalance,
+} from "./solana";

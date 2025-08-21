@@ -36,6 +36,52 @@ export interface Aegyptus {
           writable: true;
         },
         {
+          name: "universeAccount";
+          writable: true;
+          pda: {
+            seeds: [];
+          };
+        },
+        {
+          name: "vaultAccount";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                ];
+              },
+            ];
+          };
+        },
+        {
+          name: "masterAccount";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  117,
+                  115,
+                  101,
+                  114,
+                ];
+              },
+              {
+                kind: "account";
+                path: "recipient";
+              },
+            ];
+          };
+        },
+        {
           name: "userAccount";
           writable: true;
           pda: {
@@ -78,7 +124,42 @@ export interface Aegyptus {
           };
         },
         {
+          name: "userLakeAccount";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  117,
+                  115,
+                  101,
+                  114,
+                ];
+              },
+              {
+                kind: "account";
+                path: "signer";
+              },
+              {
+                kind: "const";
+                value: [
+                  108,
+                  97,
+                  107,
+                  101,
+                ];
+              },
+              {
+                kind: "arg";
+                path: "lake";
+              },
+            ];
+          };
+        },
+        {
           name: "masterFishAccount";
+          writable: true;
         },
         {
           name: "userFishAccount";
@@ -115,22 +196,46 @@ export interface Aegyptus {
           signer: true;
         },
         {
-          name: "operator";
+          name: "universeAccount";
+          writable: true;
+          pda: {
+            seeds: [];
+          };
+        },
+        {
+          name: "vaultAccount";
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                ];
+              },
+            ];
+          };
+        },
+        {
+          name: "userAccount";
           writable: true;
           pda: {
             seeds: [
               {
                 kind: "const";
                 value: [
-                  111,
-                  112,
+                  117,
+                  115,
                   101,
                   114,
-                  97,
-                  116,
-                  111,
-                  114,
                 ];
+              },
+              {
+                kind: "account";
+                path: "vaultAccount";
               },
             ];
           };
@@ -226,6 +331,31 @@ export interface Aegyptus {
           signer: true;
         },
         {
+          name: "universeAccount";
+          writable: true;
+          pda: {
+            seeds: [];
+          };
+        },
+        {
+          name: "vaultAccount";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116,
+                ];
+              },
+            ];
+          };
+        },
+        {
           name: "userAccount";
           writable: true;
           pda: {
@@ -248,6 +378,7 @@ export interface Aegyptus {
         },
         {
           name: "masterAccount";
+          writable: true;
           optional: true;
         },
         {
@@ -286,6 +417,19 @@ export interface Aegyptus {
       ];
     },
     {
+      name: "universeAccountData";
+      discriminator: [
+        114,
+        16,
+        186,
+        105,
+        41,
+        175,
+        118,
+        221,
+      ];
+    },
+    {
       name: "userAccountData";
       discriminator: [
         75,
@@ -298,6 +442,19 @@ export interface Aegyptus {
         139,
       ];
     },
+    {
+      name: "userLakeAccountData";
+      discriminator: [
+        23,
+        176,
+        185,
+        190,
+        115,
+        247,
+        153,
+        16,
+      ];
+    },
   ];
   types: [
     {
@@ -305,6 +462,14 @@ export interface Aegyptus {
       type: {
         kind: "struct";
         fields: [
+          {
+            name: "prevSequence";
+            type: "u32";
+          },
+          {
+            name: "paymentCount";
+            type: "u32";
+          },
           {
             name: "owner";
             type: "pubkey";
@@ -325,6 +490,30 @@ export interface Aegyptus {
       };
     },
     {
+      name: "universeAccountData";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "lakeCount";
+            type: "u32";
+          },
+          {
+            name: "userCount";
+            type: "u32";
+          },
+          {
+            name: "transactionCount";
+            type: "u32";
+          },
+          {
+            name: "transactionSum";
+            type: "u64";
+          },
+        ];
+      };
+    },
+    {
       name: "userAccountData";
       type: {
         kind: "struct";
@@ -338,22 +527,40 @@ export interface Aegyptus {
             type: "u8";
           },
           {
+            name: "slaveCount";
+            type: "u32";
+          },
+          {
+            name: "lakeIncome";
+            type: "u64";
+          },
+          {
+            name: "slaveIncome";
+            type: "u64";
+          },
+          {
             name: "master1";
-            type: {
-              option: "pubkey";
-            };
+            type: "pubkey";
           },
           {
             name: "master2";
-            type: {
-              option: "pubkey";
-            };
+            type: "pubkey";
           },
           {
             name: "master3";
-            type: {
-              option: "pubkey";
-            };
+            type: "pubkey";
+          },
+        ];
+      };
+    },
+    {
+      name: "userLakeAccountData";
+      type: {
+        kind: "struct";
+        fields: [
+          {
+            name: "firstSequence";
+            type: "u32";
           },
         ];
       };

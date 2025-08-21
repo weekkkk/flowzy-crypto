@@ -59,6 +59,7 @@ watch(visibleDrawer, () => {
             <Tabs orientation="vertical" />
             <ClientOnly>
               <div v-if="connected" class="sticky bottom-0 flex gap-4 mt-42">
+                <UiLibSolanaWalletBalance />
                 <UiLibSolanaWallet />
                 <UiLibSolanaDisconnectWallet />
               <!-- <WalletInfoFeature :user-id="1" /> -->
