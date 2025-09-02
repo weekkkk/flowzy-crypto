@@ -1,33 +1,23 @@
-import type { UserGetStatReqDto, UserGetStatResDto } from "./interfaces";
-// import { SolanaService } from "~/src/shared/lib/solana";
-import { $user } from "./point";
+import type { UserGetStatResDto } from "./interfaces";
+// eslint-disable-next-line unicorn/prefer-node-protocol
+import { Buffer } from "buffer";
 
 export class UserService {
-  static async getStat(req: UserGetStatReqDto): Promise<UserGetStatResDto> {
-    const res = await $user<UserGetStatResDto>(`/get-stat?userId=${req.userId}`, {
-      method: "GET",
-    });
-    return res;
+  static getStat: SolanaMethod<UserGetStatResDto> = async ({ anchor, program, wallet }) => {
+    const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+      [
+        Buffer.from("user"),
+        wallet.publicKey.toBuffer(),
+      ],
+      program.programId,
+    );
 
-    // const { program } = SolanaService.getInstance(wallet);
+    const userAccountData = await program.account.userAccountData.fetch(userAddress);
 
-    // const [universeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-    //   [],
-    //   program.programId,
-    // );
-
-    // const universeAccountData = await program.account.universeAccountData.fetch(universeAddress);
-
-    // return {
-    //   income: universeAccountData.transactionSum / anchor.web3.LAMPORTS_PER_SOL,
-    //   partners: universeAccountData.transactionCount,
-    //   partnershipIncome: universeAccountData.transactionCount,
-    // };
-    // // 1.1.1
-    // console.log("Total participants", universeAccountData.userCount);
-    // // 1.1.2
-    // console.log("Total transactions", universeAccountData.transactionCount);
-    // // 1.1.3
-    // console.log("SOL turnover", universeAccountData.transactionSum / anchor.web3.LAMPORTS_PER_SOL);
-  }
+    return {
+      income: (userAccountData.lakeIncome + userAccountData.slaveIncome) / anchor.web3.LAMPORTS_PER_SOL,
+      partnershipIncome: userAccountData.slaveIncome / anchor.web3.LAMPORTS_PER_SOL,
+      partners: userAccountData.slaveCount,
+    };
+  };
 }

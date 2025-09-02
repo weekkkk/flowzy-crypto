@@ -1,2 +1,7 @@
-export { useWalletBalance } from "./composables";
-export { useExtendedWallet } from "./utils";
+export {
+  type SolanaMethod,
+  useExtendedWallet,
+  useSolanaMethod,
+  useWalletBalance,
+} from "./composables";
+export type { SolanaAnchor } from "./types";

@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/aegyptus.json`.
  */
 export interface Aegyptus {
-  address: "D4zv6uyBk6tN2oqgSuDdrktAMkeqrNtJpAYLQzRLVawV";
+  address: "8UqDNba5BLszSiCaym6JdZvobNpTd9jgu552E1zyTYSw";
   metadata: {
     name: "aegyptus";
     version: "0.1.0";
@@ -30,10 +30,6 @@ export interface Aegyptus {
           name: "signer";
           writable: true;
           signer: true;
-        },
-        {
-          name: "recipient";
-          writable: true;
         },
         {
           name: "universeAccount";
@@ -61,6 +57,22 @@ export interface Aegyptus {
           };
         },
         {
+          name: "recipient";
+          writable: true;
+        },
+        {
+          name: "recipientMaster1";
+          writable: true;
+        },
+        {
+          name: "recipientMaster2";
+          writable: true;
+        },
+        {
+          name: "recipientMaster3";
+          writable: true;
+        },
+        {
           name: "masterAccount";
           writable: true;
           pda: {
@@ -76,7 +88,74 @@ export interface Aegyptus {
               },
               {
                 kind: "account";
-                path: "recipient";
+                path: "master_fish_account.owner";
+                account: "fishAccountData";
+              },
+            ];
+          };
+        },
+        {
+          name: "master1Account";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  117,
+                  115,
+                  101,
+                  114,
+                ];
+              },
+              {
+                kind: "account";
+                path: "master_account.master_1";
+                account: "userAccountData";
+              },
+            ];
+          };
+        },
+        {
+          name: "master2Account";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  117,
+                  115,
+                  101,
+                  114,
+                ];
+              },
+              {
+                kind: "account";
+                path: "master_account.master_2";
+                account: "userAccountData";
+              },
+            ];
+          };
+        },
+        {
+          name: "master3Account";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  117,
+                  115,
+                  101,
+                  114,
+                ];
+              },
+              {
+                kind: "account";
+                path: "master_account.master_3";
+                account: "userAccountData";
               },
             ];
           };
@@ -241,6 +320,40 @@ export interface Aegyptus {
           };
         },
         {
+          name: "userLakeAccount";
+          writable: true;
+          pda: {
+            seeds: [
+              {
+                kind: "const";
+                value: [
+                  117,
+                  115,
+                  101,
+                  114,
+                ];
+              },
+              {
+                kind: "account";
+                path: "vaultAccount";
+              },
+              {
+                kind: "const";
+                value: [
+                  108,
+                  97,
+                  107,
+                  101,
+                ];
+              },
+              {
+                kind: "arg";
+                path: "lake";
+              },
+            ];
+          };
+        },
+        {
           name: "lakeAccount";
           writable: true;
           pda: {
@@ -309,6 +422,10 @@ export interface Aegyptus {
         {
           name: "lake";
           type: "u8";
+        },
+        {
+          name: "activeSinceUnixTimestamp";
+          type: "i64";
         },
       ];
     },
@@ -379,7 +496,6 @@ export interface Aegyptus {
         {
           name: "masterAccount";
           writable: true;
-          optional: true;
         },
         {
           name: "systemProgram";
@@ -456,6 +572,13 @@ export interface Aegyptus {
       ];
     },
   ];
+  errors: [
+    {
+      code: 6000;
+      name: "accessDenied";
+      msg: "Access denied via signer address";
+    },
+  ];
   types: [
     {
       name: "fishAccountData";
@@ -485,6 +608,10 @@ export interface Aegyptus {
           {
             name: "sequence";
             type: "u32";
+          },
+          {
+            name: "activeSinceUnixTimestamp";
+            type: "i64";
           },
         ];
       };

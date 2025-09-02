@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import type { GameLevelMiniCardProps } from "./interfaces";
 import { GameLevelMiniCardStatesActive, GameLevelMiniCardStatesDefault, GameLevelMiniCardStatesUnavailable } from "#components";
-import { GameLevelMiniCardStates } from "./enums";
 
 /** Параметры */
 const props = defineProps<GameLevelMiniCardProps>();
 
 /** Получить состояние карточки */
 const getCardState = computed(() => {
-  switch (props.info.state) {
-    case GameLevelMiniCardStates.Active:
+  switch (props.info.status) {
+    case GameLevelStatusEnum.Active:
       return GameLevelMiniCardStatesActive;
-    case GameLevelMiniCardStates.Unavailable:
+    case GameLevelStatusEnum.Unavailable:
       return GameLevelMiniCardStatesUnavailable;
-    case GameLevelMiniCardStates.Default:
+    case GameLevelStatusEnum.Default:
       return GameLevelMiniCardStatesDefault;
     default:
       return GameLevelMiniCardStatesDefault;

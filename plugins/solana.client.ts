@@ -1,0 +1,43 @@
+import type { Program } from "@coral-xyz/anchor";
+import type { AnchorWallet } from "solana-wallets-vue";
+import type { SolanaAnchor } from "~/src/shared/lib";
+import type { Aegyptus } from "~/target/types/aegyptus";
+import { clusterApiUrl, Connection } from "@solana/web3.js";
+import IDL from "~/target/idl/aegyptus.json";
+
+export default defineNuxtPlugin(async () => {
+  const anchor: SolanaAnchor = await import("@coral-xyz/anchor");
+
+  const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+
+  const program = ref<NoInfer<Program<Aegyptus> | null>>(null);
+
+  const wallet = ref<AnchorWallet | null>(null);
+
+  return {
+    provide: {
+      solana: {
+        init(_wallet: AnchorWallet) {
+          wallet.value = _wallet;
+          const provider = new anchor.AnchorProvider(
+            connection,
+            _wallet,
+            {},
+          );
+          anchor.setProvider(provider);
+          console.log("provider.wallet.payer", provider.wallet);
+
+          // anchor.setProvider(provider);
+          program.value = new anchor.Program<Aegyptus>(IDL, provider);
+        },
+        destroy() {
+          wallet.value = null;
+          program.value = null;
+        },
+        anchor,
+        program,
+        wallet,
+      },
+    },
+  };
+});

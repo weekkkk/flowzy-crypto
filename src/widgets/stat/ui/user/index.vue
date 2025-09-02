@@ -1,5 +1,13 @@
-<script lang="ts" async setup>
-const { data } = await useAsyncData("user-stat", () => UserService.getStat({ userId: 1 }), { default: () => ({ income: 0, partnershipIncome: 0, partners: 0 }) });
+<script lang="ts"  setup>
+const { data } = useSolanaMethod({
+  key: "user-stat",
+  f: UserService.getStat,
+  default: {
+    income: 0,
+    partners: 0,
+    partnershipIncome: 0,
+  },
+});
 </script>
 
 <template>

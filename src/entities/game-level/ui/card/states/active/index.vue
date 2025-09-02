@@ -30,7 +30,7 @@ const iconPositions = computed(() => {
         <div
           v-for="(pos, index) in iconPositions"
           :key="index"
-          class="absolute -top-0.5 max-md:-top-1"
+          class="absolute -top-0.5 max-md:-top-1 -translate-x-1/2"
           :style="{ left: `${pos}%` }"
         >
           <UIcon name="fci:solana" class="w-6 h-6 max-md:w-3 max-md:h-3" />
