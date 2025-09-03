@@ -31,7 +31,7 @@ export class GameLevelService {
 
   static k = 0;
 
-  static LEVELS_COUNT = 22;
+  static LEVELS_COUNT = 16;
   static LEVEL_PRICE_LIST = [
     1,
     2,
@@ -83,79 +83,85 @@ export class GameLevelService {
     program,
     wallet,
   }, lake) => {
-    const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-      [
-        Buffer.from("lake"),
-        (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
-      ],
-      program.programId,
-    );
-    const lakeAccountDataNullable = await program.account.lakeAccountData.fetchNullable(lakeAddress);
-    if (!lakeAccountDataNullable) {
-      await this.initialize({ anchor, program, wallet }, lake);
-    }
-    const lakeAccountData = lakeAccountDataNullable ?? await program.account.lakeAccountData.fetch(lakeAddress);
+    try {
+      const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("lake"),
+          (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
+        ],
+        program.programId,
+      );
+      // const lakeAccountDataNullable = await program.account.lakeAccountData.fetchNullable(lakeAddress);
+      // if (!lakeAccountDataNullable) {
+      // await this.initialize({ anchor, program, wallet }, lake);
+      // }
+      // const lakeAccountData = lakeAccountDataNullable ?? await program.account.lakeAccountData.fetch(lakeAddress);
+      const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
 
-    if (Date.now() < lakeAccountData.activeSinceUnixTimestamp) {
+      if (Date.now() < lakeAccountData.activeSinceUnixTimestamp) {
       // console.log("Unavailable");
-      return GameLevelStatusEnum.Unavailable;
-    }
+        return GameLevelStatusEnum.Unavailable;
+      }
 
-    const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-      [
-        Buffer.from("user"),
-        wallet.publicKey.toBuffer(),
-      ],
-      program.programId,
-    );
+      const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("user"),
+          wallet.publicKey.toBuffer(),
+        ],
+        program.programId,
+      );
 
-    const [userLakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-      [
-        Buffer.from("user"),
-        wallet.publicKey.toBuffer(),
-        Buffer.from("lake"),
-        (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
-      ],
-      program.programId,
-    );
+      const [userLakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("user"),
+          wallet.publicKey.toBuffer(),
+          Buffer.from("lake"),
+          (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
+        ],
+        program.programId,
+      );
 
-    const userLakeAccountData = await program.account.userLakeAccountData.fetchNullable(userLakeAddress);
+      const userLakeAccountData = await program.account.userLakeAccountData.fetchNullable(userLakeAddress);
 
-    const userAccountDataNullable = await program.account.userAccountData.fetchNullable(userAddress);
+      const userAccountDataNullable = await program.account.userAccountData.fetchNullable(userAddress);
 
-    if (!userAccountDataNullable) {
-      await this.join({ anchor, program, wallet }, null);
-    }
-    const userAccountData = userAccountDataNullable ?? await program.account.userAccountData.fetch(userAddress);
+      if (!userAccountDataNullable) {
+        await this.join({ anchor, program, wallet }, null);
+      }
+      const userAccountData = userAccountDataNullable ?? await program.account.userAccountData.fetch(userAddress);
 
-    if (userLakeAccountData == null) {
+      if (userLakeAccountData == null) {
       // console.log("Not active");
-      return GameLevelStatusEnum.Default;
-    }
+        return GameLevelStatusEnum.Default;
+      }
 
-    const [fishAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-      [
-        Buffer.from("lake"),
-        Buffer.from(new Uint8Array([lake])),
-        Buffer.from("fish"),
-        (new anchor.BN(userLakeAccountData.firstSequence)).toArrayLike(Buffer, "le", 4),
-      ],
-      program.programId,
-    );
+      const [fishAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("lake"),
+          Buffer.from(new Uint8Array([lake])),
+          Buffer.from("fish"),
+          (new anchor.BN(userLakeAccountData.firstSequence)).toArrayLike(Buffer, "le", 4),
+        ],
+        program.programId,
+      );
 
-    const fishAccountData = await program.account.fishAccountData.fetch(fishAddress);
+      const fishAccountData = await program.account.fishAccountData.fetch(fishAddress);
 
-    if (fishAccountData.paymentCount === 0) {
+      if (fishAccountData.paymentCount === 0) {
       // console.log("Waiting");
-      return GameLevelStatusEnum.Awaiting;
-    }
-    else if (userAccountData.lastLake > lake || fishAccountData.paymentCount < 2) {
+        return GameLevelStatusEnum.Awaiting;
+      }
+      else if (userAccountData.lastLake > lake || fishAccountData.paymentCount < 2) {
       // console.log("Active");
-      return GameLevelStatusEnum.Active;
-    }
-    else {
+        return GameLevelStatusEnum.Active;
+      }
+      else {
       // console.log("Freezed");
-      return GameLevelStatusEnum.Freeze;
+        return GameLevelStatusEnum.Freeze;
+      }
+    }
+    catch {
+      return GameLevelStatusEnum.Error;
     }
   };
 
@@ -189,47 +195,47 @@ export class GameLevelService {
     program,
     wallet,
   }) => {
-    const levels: GameLevelShortDto[] = [];
+    const levels: GameLevelShortDto[] = await Promise.all(
+      this.ids.map<Promise<GameLevelShortDto>>(async (lake) => {
+        const status = await this.getStatus({ anchor, program, wallet }, lake);
 
-    for (const lake of this.ids) {
-      const status = await this.getStatus({ anchor, program, wallet }, lake);
+        let progress = 0;
+        let userEarn: number | undefined;
+        let initializeTimestamp = 0;
+        if (status === GameLevelStatusEnum.Awaiting || status === GameLevelStatusEnum.Active) {
+          const [progressFloat, userEarnFloat] = await this.progress({
+            anchor,
+            program,
+            wallet,
+          }, lake);
+          progress = progressFloat * 100;
+          userEarn = userEarnFloat;
+        }
+        else if (status === GameLevelStatusEnum.Unavailable) {
+          const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+            [
+              Buffer.from("lake"),
+              (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
+            ],
+            program.programId,
+          );
+          const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
+          initializeTimestamp = lakeAccountData.activeSinceUnixTimestamp;
+        }
 
-      let progress = 0;
-      let userEarn: number | undefined;
-      let initializeTimestamp = 0;
-      if (status === GameLevelStatusEnum.Awaiting || status === GameLevelStatusEnum.Active) {
-        const [progressFloat, userEarnFloat] = await this.progress({
-          anchor,
-          program,
-          wallet,
-        }, lake);
-        progress = progressFloat * 100;
-        userEarn = userEarnFloat;
-      }
-      else if (status === GameLevelStatusEnum.Unavailable) {
-        const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-          [
-            Buffer.from("lake"),
-            (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
-          ],
-          program.programId,
-        );
-        const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
-        initializeTimestamp = lakeAccountData.activeSinceUnixTimestamp;
-      }
-
-      levels.push({
-        id: lake,
-        level: lake + 1,
-        price: this.LEVEL_PRICE_LIST[lake],
-        status,
-        partnerBonus: 0,
-        profitLevel: 0,
-        progress,
-        userEarnings: typeof userEarn === "undefined" ? [] : [userEarn],
-        initializeTimestamp,
-      });
-    }
+        return {
+          id: lake,
+          level: lake + 1,
+          price: this.LEVEL_PRICE_LIST[lake],
+          status,
+          partnerBonus: 0,
+          profitLevel: 0,
+          progress,
+          userEarnings: typeof userEarn === "undefined" ? [] : [userEarn],
+          initializeTimestamp,
+        };
+      }),
+    );
 
     return levels;
   };
