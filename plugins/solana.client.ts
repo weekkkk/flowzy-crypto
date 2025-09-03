@@ -25,9 +25,6 @@ export default defineNuxtPlugin(async () => {
             {},
           );
           anchor.setProvider(provider);
-          console.log("provider.wallet.payer", provider.wallet);
-
-          // anchor.setProvider(provider);
           program.value = new anchor.Program<Aegyptus>(IDL, provider);
         },
         destroy() {

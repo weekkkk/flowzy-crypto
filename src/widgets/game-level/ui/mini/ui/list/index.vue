@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /** Получить список игровых уровней */
-const { data: levels, status } = useSolanaMethod({
+const { data: levels, status, error } = useSolanaMethod({
   key: "short-levels",
   f: GameLevelService.getShortList,
 });
@@ -10,6 +10,7 @@ const { data: levels, status } = useSolanaMethod({
   <UiLoaderWrap
     :data="levels"
     :status="status"
+    :error="error"
     wrap-class="grid grid-cols-8 max-md:grid-cols-6 gap-5 max-md:gap-3"
     loader-class="col-start-1 col-end-9 max-md:col-end-7"
     empty-class="col-start-1 col-end-9 max-md:col-end-7"

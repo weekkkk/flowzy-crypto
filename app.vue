@@ -1,10 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line unicorn/prefer-node-protocol
-import { Buffer } from "buffer";
 import { useAnchorWallet } from "solana-wallets-vue";
-
-if (window)
-  window.Buffer = Buffer;
 
 const { $solana } = useNuxtApp();
 

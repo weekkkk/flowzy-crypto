@@ -29,7 +29,9 @@ export class GameLevelService {
     return response;
   }
 
-  static LEVELS_COUNT = 16;
+  static k = 0;
+
+  static LEVELS_COUNT = 22;
   static LEVEL_PRICE_LIST = [
     1,
     2,
@@ -47,11 +49,17 @@ export class GameLevelService {
     14,
     15,
     16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
   ];
 
   static get ids(): number[] {
     const ids: number[] = [];
-    for (let i = this.LEVELS_COUNT + 16 - 1; i >= 16; i--) {
+    for (let i = this.LEVELS_COUNT + this.k - 1; i >= this.k; i--) {
       ids.push(i);
     }
     return ids;
@@ -62,7 +70,7 @@ export class GameLevelService {
     program,
     wallet,
   }, lake) => {
-    await program.methods.initialize(lake, new anchor.BN(Date.now() + lake - 16 * (60 * 60 * 1000)))
+    await program.methods.initialize(lake, new anchor.BN(Date.now() + (lake - this.k) * (60 * 60 * 1000)))
       .accounts({
         signer: wallet.publicKey,
       })
@@ -75,6 +83,24 @@ export class GameLevelService {
     program,
     wallet,
   }, lake) => {
+    const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+      [
+        Buffer.from("lake"),
+        (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
+      ],
+      program.programId,
+    );
+    const lakeAccountDataNullable = await program.account.lakeAccountData.fetchNullable(lakeAddress);
+    if (!lakeAccountDataNullable) {
+      await this.initialize({ anchor, program, wallet }, lake);
+    }
+    const lakeAccountData = lakeAccountDataNullable ?? await program.account.lakeAccountData.fetch(lakeAddress);
+
+    if (Date.now() < lakeAccountData.activeSinceUnixTimestamp) {
+      // console.log("Unavailable");
+      return GameLevelStatusEnum.Unavailable;
+    }
+
     const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
       [
         Buffer.from("user"),
@@ -96,7 +122,6 @@ export class GameLevelService {
     const userLakeAccountData = await program.account.userLakeAccountData.fetchNullable(userLakeAddress);
 
     const userAccountDataNullable = await program.account.userAccountData.fetchNullable(userAddress);
-    console.log({ userAccountDataNullable });
 
     if (!userAccountDataNullable) {
       await this.join({ anchor, program, wallet }, null);
@@ -107,7 +132,6 @@ export class GameLevelService {
       // console.log("Not active");
       return GameLevelStatusEnum.Default;
     }
-    console.log({ "userLakeAccountData.firstSequence": userLakeAccountData.firstSequence });
 
     const [fishAddress] = anchor.web3.PublicKey.findProgramAddressSync(
       [
@@ -165,37 +189,49 @@ export class GameLevelService {
     program,
     wallet,
   }) => {
-    return Promise.all(
-      this.ids.map<
-        Promise<GameLevelShortDto>
-      >(async (lake) => {
-        const status = await this.getStatus({ anchor, program, wallet }, lake);
+    const levels: GameLevelShortDto[] = [];
 
-        let progress = 0;
-        let userEarn: number | undefined;
-        if (status === GameLevelStatusEnum.Awaiting || status === GameLevelStatusEnum.Active) {
-          const [progressFloat, userEarnFloat] = await this.progress({
-            anchor,
-            program,
-            wallet,
-          }, lake);
-          progress = progressFloat * 100;
+    for (const lake of this.ids) {
+      const status = await this.getStatus({ anchor, program, wallet }, lake);
 
-          userEarn = userEarnFloat;
-        }
+      let progress = 0;
+      let userEarn: number | undefined;
+      let initializeTimestamp = 0;
+      if (status === GameLevelStatusEnum.Awaiting || status === GameLevelStatusEnum.Active) {
+        const [progressFloat, userEarnFloat] = await this.progress({
+          anchor,
+          program,
+          wallet,
+        }, lake);
+        progress = progressFloat * 100;
+        userEarn = userEarnFloat;
+      }
+      else if (status === GameLevelStatusEnum.Unavailable) {
+        const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+          [
+            Buffer.from("lake"),
+            (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
+          ],
+          program.programId,
+        );
+        const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
+        initializeTimestamp = lakeAccountData.activeSinceUnixTimestamp;
+      }
 
-        return {
-          id: lake,
-          level: lake + 1,
-          price: this.LEVEL_PRICE_LIST[lake],
-          status,
-          partnerBonus: 0,
-          profitLevel: 0,
-          progress,
-          userEarnings: typeof userEarn === "undefined" ? [] : [userEarn],
-        };
-      }),
-    );
+      levels.push({
+        id: lake,
+        level: lake + 1,
+        price: this.LEVEL_PRICE_LIST[lake],
+        status,
+        partnerBonus: 0,
+        profitLevel: 0,
+        progress,
+        userEarnings: typeof userEarn === "undefined" ? [] : [userEarn],
+        initializeTimestamp,
+      });
+    }
+
+    return levels;
   };
 
   static payTarget = (sequence: number) => {
@@ -225,7 +261,6 @@ export class GameLevelService {
         [Buffer.from("vault")],
         program.programId,
       );
-      console.log({ masterAddress });
     }
 
     const [masterUserAddress] = anchor.web3.PublicKey.findProgramAddressSync(

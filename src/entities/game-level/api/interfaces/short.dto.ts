@@ -9,4 +9,5 @@ export interface GameLevelShortDto {
   profitLevel: number;
   userEarnings: number[];
   progress: number;
+  initializeTimestamp: number;
 }

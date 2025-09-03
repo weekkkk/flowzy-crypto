@@ -18,8 +18,6 @@ const { $solana: { program, anchor, wallet } } = useNuxtApp();
 
 /** Активировать игровой уровень */
 async function activateGameLevel() {
-  console.log(props.idLevel);
-
   if (!program.value || !anchor || !wallet.value)
     return;
   await GameLevelService.activate({
@@ -27,6 +25,8 @@ async function activateGameLevel() {
     program: program.value,
     wallet: wallet.value,
   }, props.idLevel);
+  await refreshNuxtData("short-levels");
+  await refreshNuxtData("balance");
   isModalVisible.value = false;
 }
 
@@ -49,7 +49,6 @@ function closeModal() {
   >
     <slot name="activate" />
     <template #header>
-      {{ props.idLevel }}
       <UButton :ui="{ base: 'p-2.5' }" class="max-md:hidden cursor-pointer md:absolute md:-top-12.5 md:-right-11.5" @click="closeModal">
         <UIcon name="fci:cross" class="w-6 h-6 p-3.5" />
       </UButton>
