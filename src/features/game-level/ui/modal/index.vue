@@ -8,11 +8,24 @@ const props = defineProps<GameLevelModalProps>();
 const isModalVisible = ref(false);
 
 /** Получить информацию игрового уровня */
-const { data, refresh } = useAsyncData(
-  `game-level-info-${props.idLevel}`,
-  () => GameLevelService.getOne({ id: props.idLevel }),
-  { immediate: false },
-);
+const { data, refresh } = useSolanaMethod({
+  key: `game-level-info-${props.idLevel}`,
+  f: data => GameLevelService.getOne(data, props.idLevel),
+});
+
+const {
+  data: networkVerified,
+  status: networkVerifiedStatus,
+} = useSolanaMethod({
+  key: `check-network`,
+  f: GameLevelService.checkNetwork,
+  watch: [() => props.idLevel, isModalVisible],
+  immediate: isModalVisible.value,
+});
+
+const { balance, status: balancedStatus } = useWalletBalance();
+
+const balanced = computed(() => !!(balance.value && data.value && balance.value >= data.value.activateAmount));
 
 const { $solana: { program, anchor, wallet } } = useNuxtApp();
 
@@ -75,7 +88,7 @@ function closeModal() {
             Level award 74$
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.levelAward }} SOL
+            {{ data?.levelAward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="flex justify-between max-md:mb-4">
@@ -83,7 +96,7 @@ function closeModal() {
             Direct partners 13%
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.directPartnersReward }} SOL
+            {{ data?.directPartnersReward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="flex justify-between max-md:mb-4">
@@ -91,7 +104,7 @@ function closeModal() {
             Line 2 partners 8
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.line2PartnersReward }} SOL
+            {{ data?.line2PartnersReward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="flex justify-between mb-6.5 max-md:mb-7">
@@ -99,7 +112,7 @@ function closeModal() {
             Line 3 partners 5
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.line3PartnersReward }} SOL
+            {{ data?.line3PartnersReward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="bg-neutral-400 opacity-20 h-0.25" />
@@ -108,22 +121,46 @@ function closeModal() {
             Activate amount
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.activateAmount }} SOL
+            {{ data?.activateAmount.toFixed(2) }} SOL
           </div>
         </div>
         <div class="bg-neutral-400 opacity-20 h-0.25 mb-4" />
-        <div class="flex justify-between items-center text-success-400 max-md:mb-1.75">
+        <div
+          class="flex justify-between items-center max-md:mb-1.75"
+          :class="{
+            'text-success-400': networkVerified,
+            'text-error-500': networkVerifiedStatus === 'error',
+            'text-gray-500 animate-pulse': networkVerifiedStatus === 'pending',
+          }"
+        >
           <div>Network verification (Smart chain)</div>
-          <UIcon name="fci:check" class="w-6 h-6" />
+          <UIcon v-if="networkVerified" name="fci:check" class="w-6 h-6" />
+          <UIcon v-else name="fci:cross" class="w-6 h-6" />
         </div>
-        <div class="flex justify-between items-center text-success-400">
-          <div>Balance check (At least 5.5 SOL)</div>
-          <UIcon name="fci:check" class="w-6 h-6" />
+        <div
+          v-if="networkVerified && data"
+          class="flex justify-between items-center"
+          :class="{
+            'text-success-400': balanced,
+            'text-error-500': balancedStatus === 'error' || !balanced,
+            'text-gray-500 animate-pulse': balancedStatus === 'pending',
+          }"
+        >
+          <div>Balance check (At least {{ data.activateAmount }} SOL)</div>
+          <UIcon v-if="balanced" name="fci:check" class="w-6 h-6" />
+          <UIcon v-else name="fci:cross" class="w-6 h-6" />
         </div>
       </div>
     </template>
     <template #footer>
-      <UButton :ui="{ base: 'rounded-3xl max-md:rounded-5xl' }" class="flex justify-center max-md:mb-6.75 py-5 text-2xl max-md:text-base w-full cursor-pointer" @click="activateGameLevel">
+      <UButton
+        :disabled="!(networkVerified && balanced)"
+        :ui="{
+          base: 'rounded-3xl max-md:rounded-5xl',
+        }"
+        class="flex justify-center max-md:mb-6.75 py-5 text-2xl max-md:text-base w-full cursor-pointer"
+        @click="activateGameLevel"
+      >
         Activate
       </UButton>
     </template>

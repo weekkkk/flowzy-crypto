@@ -5,6 +5,4 @@ export interface GameLevelGetInfoResDto {
   line2PartnersReward: number;
   line3PartnersReward: number;
   activateAmount: number;
-  verification: boolean;
-  balanceCheck: boolean;
 }

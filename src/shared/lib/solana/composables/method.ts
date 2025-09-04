@@ -1,5 +1,6 @@
 import type { Program } from "@coral-xyz/anchor";
 import type { AnchorWallet } from "solana-wallets-vue";
+import type { MultiWatchSources } from "vue";
 import type { SolanaAnchor } from "../types";
 import type { Aegyptus } from "~/target/types/aegyptus";
 
@@ -19,6 +20,8 @@ interface UseSolanaMethodParams<
   key: string;
   f: SolanaMethod<R, P>;
   default?: D;
+  watch?: MultiWatchSources;
+  immediate?: boolean;
 }
 
 export function useSolanaMethod<
@@ -29,6 +32,8 @@ export function useSolanaMethod<
   key,
   f,
   default: defaultValue,
+  watch,
+  immediate,
 }: UseSolanaMethodParams<R, D, P>, ...args: P) {
   const { $solana: { program, anchor, wallet } } = useNuxtApp();
 
@@ -45,8 +50,8 @@ export function useSolanaMethod<
     },
     {
       server: false,
-      immediate: !!program.value,
-      watch: [program],
+      immediate: typeof immediate === "undefined" ? !!program.value : !!program.value && immediate,
+      watch: !watch ? [program] : [program, ...watch],
       default: () => defaultValue as D,
     },
   );

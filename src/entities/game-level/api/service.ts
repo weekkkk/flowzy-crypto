@@ -2,7 +2,6 @@ import type { web3 } from "@coral-xyz/anchor";
 import type {
   ActivateGameLevelReqDto,
   ActivateGameLevelResDto,
-  GameLevelGetInfoReqDto,
   GameLevelGetInfoResDto,
   GameLevelShortDto,
   GameLevelsReqDto,
@@ -250,11 +249,22 @@ export class GameLevelService {
     return sequence - power;
   };
 
-  static getOne = async (req: GameLevelGetInfoReqDto) => {
-    const response = await $gameLevel<GameLevelGetInfoResDto>(`/get-game-info?${req.id}`, {
-      method: "GET",
-    });
-    return response;
+  static getOne: SolanaMethod<GameLevelGetInfoResDto, [lake: number]> = async (_, lake) => {
+    const price = this.LEVEL_PRICE_LIST[lake];
+
+    const levelAward = 0.74 * price;
+    const directPartnersReward = 0.13 * price;
+    const line2PartnersReward = 0.08 * price;
+    const line3PartnersReward = 0.05 * price;
+
+    return {
+      level: lake + 1,
+      levelAward,
+      directPartnersReward,
+      line2PartnersReward,
+      line3PartnersReward,
+      activateAmount: price,
+    };
   };
 
   static join: SolanaMethod<void, [masterAddress: web3.PublicKey | null]> = async ({
@@ -379,5 +389,10 @@ export class GameLevelService {
       .rpc();
 
     return sequence;
+  };
+
+  static checkNetwork: SolanaMethod<boolean> = async ({ program }) => {
+    await program.provider.connection.getVersion();
+    return true;
   };
 }
