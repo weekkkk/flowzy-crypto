@@ -250,11 +250,41 @@ export class GameLevelService {
     return sequence - power;
   };
 
-  static getOne = async (req: GameLevelGetInfoReqDto) => {
-    const response = await $gameLevel<GameLevelGetInfoResDto>(`/get-game-info?${req.id}`, {
-      method: "GET",
-    });
-    return response;
+  static getOne: SolanaMethod<GameLevelGetInfoResDto, [lake: number]> = async ({
+    anchor,
+    program,
+    wallet,
+  }, lake) => {
+    const status = await this.getStatus({ anchor, program, wallet }, lake);
+
+    let progress = 0;
+    let userEarn: number | undefined;
+    let initializeTimestamp = 0;
+    if (status === GameLevelStatusEnum.Awaiting || status === GameLevelStatusEnum.Active) {
+      const [progressFloat, userEarnFloat] = await this.progress({
+        anchor,
+        program,
+        wallet,
+      }, lake);
+      progress = progressFloat * 100;
+      userEarn = userEarnFloat;
+    }
+    else if (status === GameLevelStatusEnum.Unavailable) {
+      const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("lake"),
+          (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
+        ],
+        program.programId,
+      );
+      const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
+      initializeTimestamp = lakeAccountData.activeSinceUnixTimestamp;
+    }
+
+    return {
+      level: lake + 1,
+      activateAmount: 0,
+    };
   };
 
   static join: SolanaMethod<void, [masterAddress: web3.PublicKey | null]> = async ({
@@ -379,5 +409,10 @@ export class GameLevelService {
       .rpc();
 
     return sequence;
+  };
+
+  static checkNetwork: SolanaMethod<boolean> = async ({ program }) => {
+    await program.provider.connection.getVersion();
+    return true;
   };
 }
