@@ -20,13 +20,15 @@ defineProps<GameLevelCardDefaultProps>();
       Available for<br>activation
     </div>
     <div class="flex justify-center mt-10 max-md:mt-6">
-      <GameLevelModalFeature :id-level="1">
-        <template #activate>
-          <UButton class="flex text-xl py-5.5 px-18.5 max-md:py-3 max-md:px-10 cursor-pointer max-md:text-sm">
-            Activate
-          </UButton>
-        </template>
-      </GameLevelModalFeature>
+      <ClientOnly>
+        <GameLevelModalFeature :id-level="info.id">
+          <template #activate>
+            <UButton class="flex text-xl py-5.5 px-18.5 max-md:py-3 max-md:px-10 cursor-pointer max-md:text-sm">
+              Activate
+            </UButton>
+          </template>
+        </GameLevelModalFeature>
+      </ClientOnly>
     </div>
   </div>
 </template>

@@ -10,13 +10,23 @@ const isModalVisible = ref(false);
 /** Получить информацию игрового уровня */
 const { data, refresh } = useAsyncData(
   `game-level-info-${props.idLevel}`,
-  () => GameLevelService.getInfo({ id: props.idLevel }),
+  () => GameLevelService.getOne({ id: props.idLevel }),
   { immediate: false },
 );
 
+const { $solana: { program, anchor, wallet } } = useNuxtApp();
+
 /** Активировать игровой уровень */
 async function activateGameLevel() {
-  await GameLevelService.activateGameLevel({ id: props.idLevel });
+  if (!program.value || !anchor || !wallet.value)
+    return;
+  await GameLevelService.activate({
+    anchor,
+    program: program.value,
+    wallet: wallet.value,
+  }, props.idLevel);
+  await refreshNuxtData("short-levels");
+  await refreshNuxtData("balance");
   isModalVisible.value = false;
 }
 

@@ -1,6 +1,9 @@
 <script setup lang="ts">
 /** Получить информацию кошелька юзера */
 const { data } = useAsyncData("user-info", () => WalletService.getInfo({ userId: 1 }));
+
+const { balance, status } = useWalletBalance();
+const formatedBalance = computed(() => balance.value ? balance.value.toFixed(1) : "0.0");
 </script>
 
 <template>
@@ -12,8 +15,18 @@ const { data } = useAsyncData("user-info", () => WalletService.getInfo({ userId:
       <div class="max-md:text-3xl">
         Network game
       </div>
-      <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent max-md:text-xl">
-        {{ data?.balance }} SOL
+      <div class="relative bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent max-md:text-xl">
+        <ClientOnly>
+          <UProgress
+            v-if="status === 'pending'"
+            size="2xl"
+            color="primary"
+            class="absolute inset-0 items-center justify-center"
+          />
+          <span :class="{ 'opacity-0': status === 'pending' }">
+            {{ formatedBalance }} SOL
+          </span>
+        </ClientOnly>
       </div>
     </div>
   </div>

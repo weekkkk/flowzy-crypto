@@ -2,7 +2,9 @@
 import type { GameLevelCardUnavailableProps } from "./interfaces";
 
 /** Параметры */
-defineProps<GameLevelCardUnavailableProps>();
+const props = defineProps<GameLevelCardUnavailableProps>();
+
+const hours = computed(() => (props.info.initializeTimestamp - Date.now()) / (60 * 60 * 1000));
 </script>
 
 <template>
@@ -24,7 +26,7 @@ defineProps<GameLevelCardUnavailableProps>();
           <div class="opacity-60">
             Available in:
           </div>
-          <div>27 hours</div>
+          <div>{{ hours.toFixed(1) }} hours</div>
         </div>
       </div>
     </div>

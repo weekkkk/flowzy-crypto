@@ -1,25 +1,24 @@
 <script setup lang="ts">
 import type { GameLevelCardEntryProps } from "./interfaces";
 import { GameLevelCardStatesActive, GameLevelCardStatesAwaiting, GameLevelCardStatesDefault, GameLevelCardStatesError, GameLevelCardStatesFreeze, GameLevelCardStatesUnavailable } from "#components";
-import { GameLevelCardStates } from "./enums";
 
 /** Параметры */
 const props = defineProps<GameLevelCardEntryProps>();
 
 /** Получить состояние карточки */
 const getCardState = computed(() => {
-  switch (props.info.state) {
-    case GameLevelCardStates.Error:
+  switch (props.info.status) {
+    case GameLevelStatusEnum.Error:
       return GameLevelCardStatesError;
-    case GameLevelCardStates.Awaiting:
+    case GameLevelStatusEnum.Awaiting:
       return GameLevelCardStatesAwaiting;
-    case GameLevelCardStates.Active:
+    case GameLevelStatusEnum.Active:
       return GameLevelCardStatesActive;
-    case GameLevelCardStates.Freeze:
+    case GameLevelStatusEnum.Freeze:
       return GameLevelCardStatesFreeze;
-    case GameLevelCardStates.Unavailable:
+    case GameLevelStatusEnum.Unavailable:
       return GameLevelCardStatesUnavailable;
-    case GameLevelCardStates.Default:
+    case GameLevelStatusEnum.Default:
       return GameLevelCardStatesDefault;
     default:
       return GameLevelCardStatesDefault;

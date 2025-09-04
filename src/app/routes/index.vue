@@ -1,13 +1,10 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: "not-authorized",
-});
-
 useSeoMeta({
   title: "Dashboard",
 });
 </script>
 
 <template>
-  <DashboardDisconnectedPage />
+  <!-- <DashboardDisconnectedPage /> -->
+  <DashboardPage />
 </template>

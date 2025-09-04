@@ -1,31 +1,27 @@
 <script setup lang="ts">
-import { GameLevelCardStates } from "~/src/entities/game-level/ui/card/enums";
-
-/** Получить список игровых уровней */
-const { data } = await useAsyncData(
-  "game-levels",
-  () => GameLevelService.getGameLevels(),
+const {
+  data: levels,
+  status,
+  error: levelsError,
+} = useSolanaMethod(
   {
-    default: () => ({
-      info: [
-        {
-          id: 1,
-          level: 1,
-          price: 55,
-          state: GameLevelCardStates.Default,
-          partnerBonus: 0,
-          profitLevel: 0,
-          userEarnings: [],
-          progress: 0,
-        },
-      ],
-    }),
+    key: "short-levels",
+    f: GameLevelService.getShortList,
   },
 );
 </script>
 
 <template>
-  <div class="grid grid-cols-5 gap-x-10 max-md:grid-cols-2 gap-y-8 max-md:gap-2.5 md:bg-neutral-800 rounded-5xl md:py-12.5 md:px-12">
-    <GameLevelCard v-for="item in data?.info" :key="item.id" :info="item" />
-  </div>
+  <UiLoaderWrap
+    :data="levels"
+    :status="status"
+    :error="levelsError"
+    wrap-class="grid grid-cols-5 gap-x-10 max-md:grid-cols-2 gap-y-8 max-md:gap-2.5 md:bg-neutral-800 rounded-5xl md:py-12.5 md:px-12"
+    loader-class="col-start-1 col-end-6 max-md:col-end-3 flex justify-center items-center"
+    empty-class="col-start-1 col-end-6 max-md:col-end-3 flex justify-center items-center"
+  >
+    <template #default="{ data }">
+      <GameLevelCard v-for="item in data" :key="item.id" :info="item" />
+    </template>
+  </UiLoaderWrap>
 </template>
