@@ -88,7 +88,7 @@ function closeModal() {
             Level award 74$
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.levelAward }} SOL
+            {{ data?.levelAward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="flex justify-between max-md:mb-4">
@@ -96,7 +96,7 @@ function closeModal() {
             Direct partners 13%
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.directPartnersReward }} SOL
+            {{ data?.directPartnersReward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="flex justify-between max-md:mb-4">
@@ -104,7 +104,7 @@ function closeModal() {
             Line 2 partners 8
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.line2PartnersReward }} SOL
+            {{ data?.line2PartnersReward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="flex justify-between mb-6.5 max-md:mb-7">
@@ -112,7 +112,7 @@ function closeModal() {
             Line 3 partners 5
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.line3PartnersReward }} SOL
+            {{ data?.line3PartnersReward.toFixed(2) }} SOL
           </div>
         </div>
         <div class="bg-neutral-400 opacity-20 h-0.25" />
@@ -121,7 +121,7 @@ function closeModal() {
             Activate amount
           </div>
           <div class="bg-gradient-to-r from-secondary-400 to-primary-400 bg-clip-text text-transparent">
-            {{ data?.activateAmount }} SOL
+            {{ data?.activateAmount.toFixed(2) }} SOL
           </div>
         </div>
         <div class="bg-neutral-400 opacity-20 h-0.25 mb-4" />

@@ -2,7 +2,6 @@ import type { web3 } from "@coral-xyz/anchor";
 import type {
   ActivateGameLevelReqDto,
   ActivateGameLevelResDto,
-  GameLevelGetInfoReqDto,
   GameLevelGetInfoResDto,
   GameLevelShortDto,
   GameLevelsReqDto,
@@ -250,40 +249,21 @@ export class GameLevelService {
     return sequence - power;
   };
 
-  static getOne: SolanaMethod<GameLevelGetInfoResDto, [lake: number]> = async ({
-    anchor,
-    program,
-    wallet,
-  }, lake) => {
-    const status = await this.getStatus({ anchor, program, wallet }, lake);
+  static getOne: SolanaMethod<GameLevelGetInfoResDto, [lake: number]> = async (_, lake) => {
+    const price = this.LEVEL_PRICE_LIST[lake];
 
-    let progress = 0;
-    let userEarn: number | undefined;
-    let initializeTimestamp = 0;
-    if (status === GameLevelStatusEnum.Awaiting || status === GameLevelStatusEnum.Active) {
-      const [progressFloat, userEarnFloat] = await this.progress({
-        anchor,
-        program,
-        wallet,
-      }, lake);
-      progress = progressFloat * 100;
-      userEarn = userEarnFloat;
-    }
-    else if (status === GameLevelStatusEnum.Unavailable) {
-      const [lakeAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-        [
-          Buffer.from("lake"),
-          (new anchor.BN(lake)).toArrayLike(Buffer, "le", 1),
-        ],
-        program.programId,
-      );
-      const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
-      initializeTimestamp = lakeAccountData.activeSinceUnixTimestamp;
-    }
+    const levelAward = 0.74 * price;
+    const directPartnersReward = 0.13 * price;
+    const line2PartnersReward = 0.08 * price;
+    const line3PartnersReward = 0.05 * price;
 
     return {
       level: lake + 1,
-      activateAmount: 0,
+      levelAward,
+      directPartnersReward,
+      line2PartnersReward,
+      line3PartnersReward,
+      activateAmount: price,
     };
   };
 
