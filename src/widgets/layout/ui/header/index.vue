@@ -5,6 +5,8 @@ import Tabs from "./Tabs.vue";
 /** События */
 const emit = defineEmits<LayoutHeaderWidgetEmits>();
 
+const { push } = useRouter();
+
 const { connected } = useExtendedWallet();
 
 /** Состояние отображения шторки */
@@ -36,7 +38,7 @@ watch(visibleDrawer, () => {
             <template v-if="connected">
               <UiLibSolanaWalletBalance />
               <UiLibSolanaWallet />
-              <UiLibSolanaDisconnectWallet />
+              <UiLibSolanaDisconnectWallet @disconnect="push('/')" />
             </template>
           </ClientOnly>
         </div>
@@ -61,9 +63,7 @@ watch(visibleDrawer, () => {
               <div v-if="connected" class="sticky bottom-0 flex gap-4 mt-42">
                 <UiLibSolanaWalletBalance />
                 <UiLibSolanaWallet />
-                <UiLibSolanaDisconnectWallet />
-              <!-- <WalletInfoFeature :user-id="1" /> -->
-              <!-- <AuthLogoutFeature @logout="onLogout" /> -->
+                <UiLibSolanaDisconnectWallet @disconnect="push('/')" />
               </div>
             </ClientOnly>
           </div>
