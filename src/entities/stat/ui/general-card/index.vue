@@ -17,18 +17,16 @@ const props = withDefaults(defineProps<StatGeneralCardProps>(), {
   }),
 });
 
-const { totalParticipants, totalTransactions, solTurnover } = props;
-
 const participants = computed(() => {
-  return formatStatGeneralRecord(totalParticipants);
+  return formatStatGeneralRecord(props.totalParticipants);
 });
 
 const transactions = computed(() => {
-  return formatStatGeneralRecord(totalTransactions);
+  return formatStatGeneralRecord(props.totalTransactions);
 });
 
 const turnover = computed(() => {
-  return formatStatGeneralRecord(solTurnover);
+  return formatStatGeneralRecord(props.solTurnover);
 });
 </script>
 
