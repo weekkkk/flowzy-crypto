@@ -1,3 +1,5 @@
+import { nodePolyfills } from "vite-plugin-node-polyfills";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ["@nuxt/image", "@nuxt/ui", "@nuxt/eslint", "@nuxthub/core"],
@@ -7,6 +9,7 @@ export default defineNuxtConfig({
     },
     build: {
       target: "esnext",
+      sourcemap: false,
     },
     optimizeDeps: {
       include: ["@coral-xyz/anchor", "@solana/web3.js", "buffer"],
@@ -20,9 +23,16 @@ export default defineNuxtConfig({
     },
     resolve: {
       alias: {
+        crypto: "crypto-browserify",
+        stream: "stream-browserify",
         buffer: "buffer",
       },
     },
+    plugins: [
+      nodePolyfills({
+        protocolImports: true,
+      }),
+    ],
   },
   components: {
     dirs: [

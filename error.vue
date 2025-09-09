@@ -25,6 +25,9 @@ const handleError = () => clearError({ redirect: route.path === "/" ? "/dashboar
   </div>
   <div v-else>
     <h2>{{ error?.statusCode }}</h2>
+    <p>
+      {{ error }}
+    </p>
     <button @click="handleError">
       Clear errors
     </button>

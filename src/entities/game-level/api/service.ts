@@ -122,12 +122,13 @@ export class GameLevelService {
 
       const userLakeAccountData = await program.account.userLakeAccountData.fetchNullable(userLakeAddress);
 
-      const userAccountDataNullable = await program.account.userAccountData.fetchNullable(userAddress);
+      const userAccountData = await program.account.userAccountData.fetch(userAddress);
 
-      if (!userAccountDataNullable) {
-        await this.join({ anchor, program, wallet }, null);
-      }
-      const userAccountData = userAccountDataNullable ?? await program.account.userAccountData.fetch(userAddress);
+      // if (!userAccountData) {
+      //   // await this.join({ anchor, program, wallet }, null);
+      //   return GameLevelStatusEnum.NotJoin;
+      // }
+      // const userAccountData = userAccountDataNullable ?? await program.account.userAccountData.fetchNullable(userAddress);
 
       if (userLakeAccountData == null) {
       // console.log("Not active");
@@ -194,6 +195,18 @@ export class GameLevelService {
     program,
     wallet,
   }) => {
+    const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+      [
+        Buffer.from("user"),
+        wallet.publicKey.toBuffer(),
+      ],
+      program.programId,
+    );
+    const userAccountDataNullable = await program.account.userAccountData.fetchNullable(userAddress);
+    if (!userAccountDataNullable) {
+      await this.join({ anchor, program, wallet }, null);
+    }
+
     const levels: GameLevelShortDto[] = await Promise.all(
       this.ids.map<Promise<GameLevelShortDto>>(async (lake) => {
         const status = await this.getStatus({ anchor, program, wallet }, lake);
