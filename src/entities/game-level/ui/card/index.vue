@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import type { GameLevelCardEntryProps } from "./interfaces";
-import { GameLevelCardStatesActive, GameLevelCardStatesAwaiting, GameLevelCardStatesDefault, GameLevelCardStatesError, GameLevelCardStatesFreeze, GameLevelCardStatesUnavailable } from "#components";
+import {
+  GameLevelCardStatesActive,
+  GameLevelCardStatesAwaiting,
+  GameLevelCardStatesDefault,
+  GameLevelCardStatesError,
+  GameLevelCardStatesFreeze,
+  GameLevelCardStatesUnavailable,
+} from "#components";
 
 /** Параметры */
 const props = defineProps<GameLevelCardEntryProps>();
