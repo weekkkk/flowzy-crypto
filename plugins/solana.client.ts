@@ -14,10 +14,12 @@ export default defineNuxtPlugin(async () => {
 
   const wallet = ref<AnchorWallet | null>(null);
 
+  const partner = ref<string | null>(null);
+
   return {
     provide: {
       solana: {
-        init(_wallet: AnchorWallet) {
+        init(_wallet: AnchorWallet, _partner: string | null = null) {
           wallet.value = _wallet;
           const provider = new anchor.AnchorProvider(
             connection,
@@ -26,14 +28,17 @@ export default defineNuxtPlugin(async () => {
           );
           anchor.setProvider(provider);
           program.value = new anchor.Program<Aegyptus>(IDL, provider);
+          partner.value = _partner;
         },
         destroy() {
           wallet.value = null;
           program.value = null;
+          partner.value = null;
         },
         anchor,
         program,
         wallet,
+        partner,
       },
     },
   };

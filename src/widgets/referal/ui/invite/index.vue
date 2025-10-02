@@ -2,7 +2,7 @@
 const referalRef = ref();
 
 function copyLink() {
-  navigator.clipboard.writeText(referalRef.value.link.text);
+  navigator.clipboard.writeText(referalRef.value.linkText);
 }
 </script>
 
@@ -21,11 +21,13 @@ function copyLink() {
       </span>
       from affiliate<br>income up to the third level
     </div>
-    <div class="flex items-center gap-2.5 max-md:gap-1.5 mt-15 max-md:mt-5">
-      <ReferalLinkFeature ref="referalRef" />
-      <UButton variant="link" class="bg-neutral-800 rounded-3xl max-md:rounded-2xl text-neutral-200 cursor-pointer hover:text-neutral-200 p-8 max-md:py-3.25 max-md:px-4" @click="copyLink">
-        <UIcon name="fci:copy" class="w-9 h-9 max-md:w-6 max-md:h-6" />
-      </UButton>
-    </div>
+    <UiLibSolanaSuspence loader-class="mt-15 max-md:mt-5 pl-5.5 pb-9 pt-9.5">
+      <div class="flex items-center gap-2.5 max-md:gap-1.5 mt-15 max-md:mt-5">
+        <ReferalLinkFeature ref="referalRef" />
+        <UButton variant="link" class="bg-neutral-800 rounded-3xl max-md:rounded-2xl text-neutral-200 cursor-pointer hover:text-neutral-200 p-8 max-md:py-3.25 max-md:px-4" @click="copyLink">
+          <UIcon name="fci:copy" class="w-9 h-9 max-md:w-6 max-md:h-6" />
+        </UButton>
+      </div>
+    </UiLibSolanaSuspence>
   </div>
 </template>

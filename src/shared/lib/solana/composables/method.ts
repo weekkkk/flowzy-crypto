@@ -8,6 +8,7 @@ export interface SolanaMethodParams {
   anchor: SolanaAnchor;
   program: Program<Aegyptus>;
   wallet: AnchorWallet;
+  partner: string | null;
 }
 
 export type SolanaMethod<R, P extends any[] = []> = (defaultParams: SolanaMethodParams, ...args: P) => Promise<R>;
@@ -35,7 +36,7 @@ export function useSolanaMethod<
   watch,
   immediate,
 }: UseSolanaMethodParams<R, D, P>, ...args: P) {
-  const { $solana: { program, anchor, wallet } } = useNuxtApp();
+  const { $solana: { program, anchor, wallet, partner } } = useNuxtApp();
 
   return useAsyncData(
     key,
@@ -46,6 +47,7 @@ export function useSolanaMethod<
         anchor,
         program: program.value,
         wallet: wallet.value,
+        partner: partner.value,
       }, ...args);
     },
     {

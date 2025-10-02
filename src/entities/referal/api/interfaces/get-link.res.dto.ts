@@ -1,3 +1,3 @@
 export interface ReferalGetLinkResDto {
-  text: string;
+  token: string;
 }
