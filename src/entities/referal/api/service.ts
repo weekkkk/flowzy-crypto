@@ -1,5 +1,6 @@
 import type { ReferalGetLinkResDto, ReferalGetStatResDto } from "./interfaces";
-import { Buffer } from "node:buffer";
+// eslint-disable-next-line unicorn/prefer-node-protocol
+import { Buffer } from "buffer";
 
 export class ReferralService {
   static getLink: SolanaMethod<ReferalGetLinkResDto> = async ({ anchor, program, wallet }) => {
