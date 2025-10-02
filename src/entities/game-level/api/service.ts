@@ -194,6 +194,7 @@ export class GameLevelService {
     anchor,
     program,
     wallet,
+    partner,
   }) => {
     const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
       [
@@ -204,12 +205,12 @@ export class GameLevelService {
     );
     const userAccountDataNullable = await program.account.userAccountData.fetchNullable(userAddress);
     if (!userAccountDataNullable) {
-      await this.join({ anchor, program, wallet }, null);
+      await this.join({ anchor, program, wallet, partner });
     }
 
     const levels: GameLevelShortDto[] = await Promise.all(
       this.ids.map<Promise<GameLevelShortDto>>(async (lake) => {
-        const status = await this.getStatus({ anchor, program, wallet }, lake);
+        const status = await this.getStatus({ anchor, program, wallet, partner }, lake);
 
         let progress = 0;
         let userEarn: number | undefined;
@@ -219,6 +220,7 @@ export class GameLevelService {
             anchor,
             program,
             wallet,
+            partner,
           }, lake);
           progress = progressFloat * 100;
           userEarn = userEarnFloat;
@@ -280,25 +282,29 @@ export class GameLevelService {
     };
   };
 
-  static join: SolanaMethod<void, [masterAddress: web3.PublicKey | null]> = async ({
+  static join: SolanaMethod<void> = async ({
     anchor,
     program,
     wallet,
-  }, masterAddress) => {
-    if (masterAddress == null) {
-      [masterAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+    partner,
+  }) => {
+    let masterUserAddress: web3.PublicKey;
+    if (partner) {
+      masterUserAddress = new anchor.web3.PublicKey(partner);
+    }
+    else {
+      const [masterAddress] = anchor.web3.PublicKey.findProgramAddressSync(
         [Buffer.from("vault")],
         program.programId,
       );
+      [masterUserAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+        [
+          Buffer.from("user"),
+          masterAddress.toBuffer(),
+        ],
+        program.programId,
+      );
     }
-
-    const [masterUserAddress] = anchor.web3.PublicKey.findProgramAddressSync(
-      [
-        Buffer.from("user"),
-        masterAddress.toBuffer(),
-      ],
-      program.programId,
-    );
 
     await program.methods.join()
       .accounts({

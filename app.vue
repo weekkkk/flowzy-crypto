@@ -3,10 +3,13 @@ import { useAnchorWallet } from "solana-wallets-vue";
 
 const { $solana } = useNuxtApp();
 
+const route = useRoute();
+
 const wallet = useAnchorWallet();
 watch(wallet, (wallet) => {
   if (wallet) {
-    $solana.init(wallet);
+    const { partner } = route.query;
+    $solana.init(wallet, typeof partner === "string" ? partner : undefined);
   }
   else {
     $solana.destroy();

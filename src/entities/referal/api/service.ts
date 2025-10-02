@@ -1,14 +1,29 @@
 import type { ReferalGetLinkResDto, ReferalGetStatResDto } from "./interfaces";
-import { $referral } from "./point";
+import { Buffer } from "node:buffer";
 
 export class ReferralService {
-  static async getLink() {
-    const res = $referral<ReferalGetLinkResDto>("/get-link");
-    return res;
-  }
+  static getLink: SolanaMethod<ReferalGetLinkResDto> = async ({ anchor, program, wallet }) => {
+    const [userAddress] = anchor.web3.PublicKey.findProgramAddressSync(
+      [
+        Buffer.from("user"),
+        wallet.publicKey.toBuffer(),
+      ],
+      program.programId,
+    );
 
-  static async getStat() {
-    const res = $referral<ReferalGetStatResDto>("/get-stat");
-    return res;
-  }
+    return {
+      token: userAddress.toBase58(),
+    };
+  };
+
+  static getStat: SolanaMethod<ReferalGetStatResDto> = async (...args) => {
+    const { partners, partnershipIncome } = await UserService.getStat(...args);
+    return {
+      info: {
+        countPartners: partners,
+        referralBonus: partnershipIncome,
+        lostProfits: 0,
+      },
+    };
+  };
 }
