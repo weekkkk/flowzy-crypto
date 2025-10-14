@@ -90,12 +90,8 @@ export class GameLevelService {
         ],
         program.programId,
       );
-      // const lakeAccountDataNullable = await program.account.lakeAccountData.fetchNullable(lakeAddress);
-      // if (!lakeAccountDataNullable) {
-      // await this.initialize({ anchor, program, wallet }, lake);
-      // }
-      // const lakeAccountData = lakeAccountDataNullable ?? await program.account.lakeAccountData.fetch(lakeAddress);
       const lakeAccountData = await program.account.lakeAccountData.fetch(lakeAddress);
+      const sequence = lakeAccountData.sequence;
 
       if (Date.now() < lakeAccountData.activeSinceUnixTimestamp) {
       // console.log("Unavailable");
@@ -124,12 +120,6 @@ export class GameLevelService {
 
       const userAccountData = await program.account.userAccountData.fetch(userAddress);
 
-      // if (!userAccountData) {
-      //   // await this.join({ anchor, program, wallet }, null);
-      //   return GameLevelStatusEnum.NotJoin;
-      // }
-      // const userAccountData = userAccountDataNullable ?? await program.account.userAccountData.fetchNullable(userAddress);
-
       if (userLakeAccountData == null) {
       // console.log("Not active");
         return GameLevelStatusEnum.Default;
@@ -147,16 +137,21 @@ export class GameLevelService {
 
       const fishAccountData = await program.account.fishAccountData.fetch(fishAddress);
 
-      if (fishAccountData.paymentCount === 0) {
-      // console.log("Waiting");
+      let power: number = 1;
+      while (power <= userLakeAccountData.firstSequence.valueOf()) {
+        power *= 2;
+      }
+
+      if (sequence < power) {
+        // console.log("Waiting");
         return GameLevelStatusEnum.Awaiting;
       }
       else if (userAccountData.lastLake > lake || fishAccountData.paymentCount < 2) {
-      // console.log("Active");
+        // console.log("Active");
         return GameLevelStatusEnum.Active;
       }
       else {
-      // console.log("Freezed");
+        // console.log("Freezed");
         return GameLevelStatusEnum.Freeze;
       }
     }
